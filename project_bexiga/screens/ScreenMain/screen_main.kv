@@ -1,0 +1,95 @@
+#:import ScreenHomeView screens.ScreenHome.screen_home
+#:import ScreenVideoView screens.ScreenVideo.screen_video
+#:import ScreenTecnicaView screens.ScreenTecnica.screen_tecnica
+#:import ScreenLembreteView screens.ScreenLembrete.screen_lembrete
+#:import ScreenAnotacaoView screens.ScreenAnotacao.screen_anotacao
+
+
+<ScreenMainView>
+  name: "main"
+  MDBoxLayout:
+    orientation: "vertical"
+    MDCard:      
+      md_bg_color:"#67AB9F"    
+      size_hint: 1, None
+      size: "50dp", "50dp"     
+      radius: 0,0,0,0       
+      MDFloatLayout:        
+        MDLabel:
+          id: title
+          text:"HOME"
+          halign: "center"
+          font_style: "Body2"
+          pos_hint: {"center_x": 0.5, "center_y": 0.5}
+          theme_text_color: "Custom"
+          bold:True
+          text_color: "#004040"
+        MDIconButton:
+          icon: "language-python"
+          pos_hint: {"center_x": 0.98, "center_y": .5}
+          on_release: 
+            root.manager.transition.direction = "down"
+            root.manager.current = "alerta"
+    MDSeparator:
+      color: "#004040"
+      size_hint_y: None
+      height: dp(3) 
+
+    MDBottomNavigation:
+      panel_color:"#67AB9F"    
+      
+
+      MDBottomNavigationItem:      
+        name: "Screen 1"        
+        icon: "images/casa.png"
+        on_tab_press:
+          root.ids.title.text = "Home"
+        ScreenHomeView:
+        MDSeparator:
+          color: "#004040"
+          size_hint_y: None
+          height: dp(3)          
+
+
+      MDBottomNavigationItem:
+        name: "Screen 2"        
+        icon: "images/bloco-de-anotacoes.png"
+        on_tab_press:
+          root.ids.title.text = "Vídeos"
+        ScreenVideoView:
+        MDSeparator:
+          color: "#004040"
+          size_hint_y: None
+          height: dp(3)    
+
+      MDBottomNavigationItem:
+        name: "Screen 3"        
+        icon: "images/informacoes.png"
+        on_tab_press:
+          root.ids.title.text = "Técnicas"
+        ScreenTecnicaView:
+        MDSeparator:
+          color: "#004040"
+          size_hint_y: None
+          height: dp(3)    
+      MDBottomNavigationItem:
+        name: "Screen 4"
+        icon: "images/time-and-calendar.png"
+        on_tab_press:
+          root.ids.title.text = "Lembretes"
+        ScreenLembreteView:
+        MDSeparator:
+          color: "#004040"
+          size_hint_y: None
+          height: dp(3)    
+
+      MDBottomNavigationItem:
+        name: "Screen 5"
+        icon: "images/time-and-calendar.png"
+        on_tab_press:
+          root.ids.title.text = "Anotações"
+        ScreenAnotacaoView:
+        MDSeparator:
+          color: "#004040"
+          size_hint_y: None
+          height: dp(3)    
