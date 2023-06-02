@@ -1,5 +1,5 @@
-<ScreenAlertaView>:
-  name: "alerta"
+<ScreenAlertaDescricao>:
+  name: "alerta-descricao"
   md_bg_color: "#67AB9F"
   MDBoxLayout:
     orientation: "vertical"
@@ -11,7 +11,7 @@
       MDFloatLayout:        
         MDLabel:
           id: title
-          text:"Alertas"
+          text:"Alerta Descricao"
           halign: "center"
           font_style: "Body2"
           pos_hint: {"center_x": 0.5, "center_y": 0.5}
@@ -22,13 +22,17 @@
           icon: "arrow-left"
           pos_hint: {"center_x": 0.02, "center_y": .5}
           on_release: 
-            root.manager.transition.direction = "up"
-            root.manager.current = "main"
+            root.manager.transition.direction = "right"
+            root.manager.current = "alerta"
     MDSeparator:
       color: "#004040"
       size_hint_y: None
       height: dp(3) 
-    ScrollView:
-      # pos_hint: {"center_x": 0.5, "center_y": 0.5}
-      MDList:
-        id: list_alert
+
+    MDLabel:
+      text: "Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur."
+      halign: "center"
+      font_style: "Body2"  
+      theme_text_color: "Custom"
+      bold:True
+      text_color: "#004040"
