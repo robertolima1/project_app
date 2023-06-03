@@ -1,9 +1,16 @@
 <ScreenLembreteView>:
   md_bg_color: "#67AB9F"
   FloatLayout:    
-
     Image:
       source: 'images/flower_background.png'
       size_hint: (None, None)
       size: "200dp", "200dp"
       pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+    MDIconButton:    
+      icon: "timer"
+      icon_size: "50sp"
+      on_release: app.show_time_picker()
+      pos_hint: {"center_x": 0.9, "center_y": 0.1}
+      icon_color: "white"
+      line_color: "white"

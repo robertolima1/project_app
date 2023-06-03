@@ -7,3 +7,11 @@
       size_hint: (None, None)
       size: "200dp", "200dp"
       pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+    MDIconButton:    
+      icon: "calendar-account-outline"
+      icon_size: "50sp"
+      on_release: app.show_date_picker()
+      pos_hint: {"center_x": 0.9, "center_y": 0.1}
+      icon_color: "white"
+      line_color: "white"    
