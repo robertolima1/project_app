@@ -6,13 +6,14 @@ from screens.ScreenAlerta.screen_alerta import ScreenAlertaView
 from screens.ScreenAlertaDescricao.screen_alerta_descricao import ScreenAlertaDescricao
 from kivymd.uix.list import TwoLineListItem
 from kivymd.uix.pickers import MDDatePicker,MDTimePicker
-
+from repository.database_manager import DatabaseManager
 
 class MainApp(MDApp):
   def __init__(self, **kwargs):
     super().__init__(**kwargs)
     self.sm = MDScreenManager()  
-    self.load_all_kv_files(self.directory)    
+    self.load_all_kv_files(self.directory) 
+    self.db = DatabaseManager()   
 
   def build(self):
     self.sm.add_widget(ScreenMainView())
@@ -22,8 +23,9 @@ class MainApp(MDApp):
     return self.sm
   
   def on_start(self):
-    for i in range (20):
-       self.sm.get_screen("alerta").ids.list_alert.add_widget(TwoLineListItem(text=f'Alerta {i}', secondary_text = "Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.", on_release= self.setAlertDescribe))
+    alertas = self.db.getAllAlerta()
+    for alerta in alertas:
+       self.sm.get_screen("alerta").ids.list_alert.add_widget(TwoLineListItem(text=alerta.alerta_title, secondary_text = alerta.alerta_describe, on_release= self.setAlertDescribe))
   
   def setAlertDescribe(self, onelinelistitem):
     self.sm.transition.direction = "left"
@@ -53,16 +55,17 @@ class MainApp(MDApp):
     date_dialog.bind(on_save=self.on_save, on_cancel=self.on_cancel)
     date_dialog.open()
   
-  def get_time(self,instance, time):
-    print("TESTE")
   def cancel_time(self,instance, time):
     print("TESTE CANCLE")
+    
+  def on_save_time(self,instance, time):
+    print("TESTE CANCL123123E")
     
   def show_time_picker(self):
     
     # previous_time = datetime.datetime.strptime("03:20:00", '%H:%M:%S').time()
     time_dialog = MDTimePicker()
-    time_dialog.bind(on_cancel = self.cancel_time,time = self.get_time)
+    time_dialog.bind(on_cancel = self.cancel_time,time = self.get_time, on_save = self.on_save_time)
     # time_dialog.set_time(previous_time)
     time_dialog.open()
 
