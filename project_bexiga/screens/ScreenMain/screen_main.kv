@@ -17,10 +17,28 @@
       MDFloatLayout:        
         MDLabel:
           id: title
-          text:"HOME"
+          text:"Home"
           halign: "center"
           font_style: "Body2"
           pos_hint: {"center_x": 0.5, "center_y": 0.5}
+          theme_text_color: "Custom"
+          bold:True
+          text_color: "#004040"
+        MDLabel:
+          id: count
+          text:"00:00:00"
+          halign: "center"
+          font_style: "Body2"
+          pos_hint: {"center_x": 0.9, "center_y": 0.5}
+          theme_text_color: "Custom"
+          bold:True
+          text_color: "#004040"
+        MDLabel:
+          id: label_lembrte
+          text:""
+          halign: "center"
+          font_style: "Body2"
+          pos_hint: {"center_x": 0.8, "center_y": 0.5}
           theme_text_color: "Custom"
           bold:True
           text_color: "#004040"
@@ -36,26 +54,15 @@
       height: dp(3) 
 
     MDBottomNavigation:
+      id: bottom_navigation
       panel_color:"#67AB9F"    
       
-
-      MDBottomNavigationItem:      
-        name: "Screen 1"        
-        icon: "images/casa.png"
-        on_tab_press:
-          root.ids.title.text = "Home"
-        ScreenHomeView:
-        MDSeparator:
-          color: "#004040"
-          size_hint_y: None
-          height: dp(3)          
-
-
       MDBottomNavigationItem:
         name: "Screen 2"        
         icon: "images/bloco-de-anotacoes.png"
         on_tab_press:
           root.ids.title.text = "Vídeos"
+          app.populate_screen(self,"video")
         ScreenVideoView:
         MDSeparator:
           color: "#004040"
@@ -67,16 +74,30 @@
         icon: "images/informacoes.png"
         on_tab_press:
           root.ids.title.text = "Técnicas"
+          app.populate_screen(self,"tecnica")
         ScreenTecnicaView:
         MDSeparator:
           color: "#004040"
           size_hint_y: None
           height: dp(3)    
+
+      MDBottomNavigationItem:      
+        name: "Screen Home"        
+        icon: "images/casa.png"
+        on_tab_press:
+          root.ids.title.text = "Home"          
+        ScreenHomeView:
+        MDSeparator:
+          color: "#004040"
+          size_hint_y: None
+          height: dp(3)          
+
       MDBottomNavigationItem:
         name: "Screen 4"
         icon: "images/time-and-calendar.png"
         on_tab_press:
           root.ids.title.text = "Lembretes"
+          app.populate_screen(self,"lembrete")
         ScreenLembreteView:
         MDSeparator:
           color: "#004040"
@@ -88,7 +109,8 @@
         icon: "images/time-and-calendar.png"
         on_tab_press:
           root.ids.title.text = "Anotações"
-        ScreenAnotacaoView:
+          app.populate_screen(self,"anotacao")
+        ScreenAnotacaoView:          
         MDSeparator:
           color: "#004040"
           size_hint_y: None

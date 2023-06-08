@@ -1,7 +1,7 @@
 <ScreenAnotacaoView>:
+  name: "screen_anotacao"
   md_bg_color: "#67AB9F"
-  FloatLayout:    
-
+  FloatLayout:
     Image:
       source: 'images/flower_background.png'
       size_hint: (None, None)
@@ -15,3 +15,7 @@
       pos_hint: {"center_x": 0.9, "center_y": 0.1}
       icon_color: "white"
       line_color: "white"    
+    ScrollView:
+      pos_hint: {"center_x": 0.5, "center_y": 0.5}
+      MDList:
+        id: list_anotacao

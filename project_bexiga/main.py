@@ -4,9 +4,11 @@ from kivymd.uix.screenmanager import MDScreenManager
 from screens.ScreenMain.screen_main import ScreenMainView
 from screens.ScreenAlerta.screen_alerta import ScreenAlertaView
 from screens.ScreenAlertaDescricao.screen_alerta_descricao import ScreenAlertaDescricao
-from kivymd.uix.list import TwoLineListItem
+from screens.ScreenLembreteDescricao.screen_lembrete_descricao import ScreenLembreteDescricao
+from kivymd.uix.list import TwoLineAvatarIconListItem, IconRightWidget, TwoLineListItem
 from kivymd.uix.pickers import MDDatePicker,MDTimePicker
 from repository.database_manager import DatabaseManager
+from utils.clock_manager import ClockManager
 
 class MainApp(MDApp):
   def __init__(self, **kwargs):
@@ -14,23 +16,34 @@ class MainApp(MDApp):
     self.sm = MDScreenManager()  
     self.load_all_kv_files(self.directory) 
     self.db = DatabaseManager()   
+    self.clock = None
 
   def build(self):
     self.sm.add_widget(ScreenMainView())
     self.sm.add_widget(ScreenAlertaView())
     self.sm.add_widget(ScreenAlertaDescricao())
+    self.sm.add_widget(ScreenLembreteDescricao())
+    # self.sm.get_screen("main").ids.bottom_navigation.first_widget = "Screen Home"
     
     return self.sm
   
-  def on_start(self):
+  def on_start(self):    
     alertas = self.db.getAllAlerta()
     for alerta in alertas:
-       self.sm.get_screen("alerta").ids.list_alert.add_widget(TwoLineListItem(text=alerta.alerta_title, secondary_text = alerta.alerta_describe, on_release= self.setAlertDescribe))
-  
-  def setAlertDescribe(self, onelinelistitem):
+       self.sm.get_screen("alerta").ids.list_alert.add_widget(TwoLineListItem(text=alerta.alerta_title, secondary_text = alerta.alerta_describe , on_release= self.setAlertDescribe))
+         
+  def setAlertDescribe(self, TwoLineListItem):
+    print(TwoLineListItem.text, TwoLineListItem.secondary_text)
     self.sm.transition.direction = "left"
     self.sm.current = "alerta-descricao"
 
+  def start_clock(self):
+    self.clock = ClockManager(1, 0, self.sm.get_screen("main").ids.count)    
+    self.clock.start()
+    
+  def stop_clock(self):
+    self.clock.stop()
+    
   def on_save(self, instance, value, date_range):
     '''
     Events called when the "OK" dialog box button is clicked.
@@ -78,4 +91,29 @@ class MainApp(MDApp):
     '''
 
     return time  
+  
+  def populate_screen(self, parent, screen_name):
+    print(screen_name)
+    
+    
+    if(screen_name == 'anotacao'):
+      anotacoes = self.db.getAllAnotacao()
+      
+      for anotacao in anotacoes:      
+        parent.children[1].ids.list_anotacao.clear_widgets()
+        parent.children[1].ids.list_anotacao.add_widget(TwoLineListItem(text=anotacao.anotacao_title, secondary_text = anotacao.anotacao_describe))       
+    elif(screen_name == 'lembrete'):    
+      icon_play =IconRightWidget(icon = "play")
+      icon_stop =IconRightWidget(icon = "stop")
+      lembrete = self.db.getAllLembrete()
+      
+      for lembrete in lembrete:      
+        parent.children[1].ids.list_lembrete.clear_widgets()
+        element = TwoLineAvatarIconListItem(text=lembrete.lembrete_title, secondary_text = lembrete.lembrete_describe,  on_release= self.setLembreteDescribe)
+        element.add_widget(icon_play)
+        parent.children[1].ids.list_lembrete.add_widget(element)       
+        
+  def setLembreteDescribe(self, TwoLineListItem):    
+    self.sm.transition.direction = "left"
+    self.sm.current = "lembrete-descricao"        
 MainApp().run()
