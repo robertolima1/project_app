@@ -1,8 +1,9 @@
 import sqlite3
+import uuid
 from domain.alerta import Alerta
 from domain.lembrete import Lembrete
 from domain.anotacao import Anotacao
-
+from datetime import datetime
 class DatabaseManager:
   
   def __init__(self) -> None:
@@ -24,12 +25,36 @@ class DatabaseManager:
   
   def getAllLembrete(self):
     c = self.connection.cursor()
-    c.execute(f"SELECT * FROM LEMBRETE")
+    c.execute(f"SELECT lembrete_id, lembrete_title, lembrete_describe, lembrete_count_repeat, on_start, lembrete_timestamp, insertion_date \
+              FROM LEMBRETE")
     records = c.fetchall()
     
     return self.normalize_lembrete(records)
    
-
+  def save_lembrete(self, instance, describe, title, number_repeat):
+    c = self.connection.cursor()
+    instante_dt = datetime.strptime(instance, '%H:%M:%S')
+    
+    c.execute(f"INSERT INTO LEMBRETE (lembrete_id, lembrete_title, lembrete_describe, lembrete_count_repeat, on_start,lembrete_timestamp, insertion_date, update_date) \
+               VALUES ('{uuid.uuid4()}', '{title}', '{describe}',{number_repeat}, {False}, '{str(instante_dt)}', datetime() ,datetime())")
+    self.connection.commit()
+    
+  def set_lembrete_on_start(self, lembrete_id, on_start):
+    c = self.connection.cursor()
+    update_dt = str(datetime.now())
+    c.execute(f"UPDATE LEMBRETE SET on_start = {on_start}, update_date = '{update_dt}' WHERE lembrete_id = '{lembrete_id}'")
+    self.connection.commit()
+    
+  def set_lembrete_all_on_start(self):
+    c = self.connection.cursor()    
+    c.execute(f"UPDATE LEMBRETE SET on_start = {False}")
+    self.connection.commit()  
+    
+  def delete_lembrete(self, lembrete_id):
+    c = self.connection.cursor()    
+    c.execute(f"DELETE FROM LEMBRETE WHERE lembrete_id = '{lembrete_id}'")
+    self.connection.commit()  
+    
   def normalize_alerta(self, records):
     alertas = []
     for register in records:

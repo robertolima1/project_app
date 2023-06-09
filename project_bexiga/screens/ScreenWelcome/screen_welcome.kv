@@ -1,0 +1,37 @@
+<ScreenWelcomeView>:
+  md_bg_color: "#67AB9F"
+  name: "screen_welcome"
+  FloatLayout:    
+
+    Image:
+      source: 'images/flower_background.png'
+      size_hint: (None, None)
+      size: "200dp", "200dp"
+      pos_hint: {"center_x": 0.5, "center_y": 0.5}    
+
+    MDLabel:
+      text: "Bem vindo!"
+      halign: "center"
+      font_style: "H4"
+      pos_hint: {"center_x": 0.5, "center_y": 0.3}
+      theme_text_color: "Custom"
+      bold:True
+      text_color: "white"
+
+    MDLabel:
+      text: "Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. "
+      halign: "center"
+      font_style: "Body2"
+      pos_hint: {"center_x": 0.5, "center_y": 0.5}
+      theme_text_color: "Custom"
+      bold:True
+      text_color: "white"
+    
+    MDRoundFlatButton:
+      text: "Vamos lá!"
+      text_color: "white"
+      pos_hint: {"center_x": 0.5, "center_y": 0.2}
+      on_release:                      
+        root.manager.transition.direction = "up"
+        root.manager.current = "main"
+        app.welcome()

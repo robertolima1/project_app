@@ -37,20 +37,117 @@
       pos_hint: {"center_x": 0.9, "center_y": 0.1}
       icon_color: "white"
       line_color: "white"
-    MDIconButton:    
-      icon: "images/start_icon.png"
-      
-      on_release: 
-        app.start_clock()
+
+
+    MDTextField:
+      id: input_lembrete_title        
+      pos_hint: {"center_x": 0.5, "center_y": 0.8}
+      hint_text: 'Digite o título do lembrete'
+      required: True      
+      helper_text_mode:"on_error"
+      mode: 'round'
+
+    MDTextField:        
+      id: input_lembrete_describe
+      pos_hint: {"center_x": 0.5, "center_y": 0.7}
+      multiline: True
+      hint_text: 'Digite a descrição do lembrete'      
+      mode: 'round'
+
+    MDTextField:        
+      id: input_lembrete_number_repeat
+      pos_hint: {"center_x": 0.5, "center_y": 0.6}
+      hint_text: 'Digite o numero de repetições'
+      size_hint: 1, None 
+      height: "30dp"   
+      required: True      
+      helper_text_mode:"on_error"
+      input_type: 'number'
+      input_filter: "int"
+      mode: 'round'
+    MDTextField:        
+      id: input_lembrete_instance       
+      hint_text: "00:00 [HH:MM]"            
+      size_hint: 1, None 
+      height: "30dp"     
+      disabled: 'True'
+      required: True      
+      pos_hint: {"center_x": 0.5, "center_y": 0.5}  
+      mode: 'round'
+    # MDCard:      
+    #   md_bg_color:"#67AB9F"    
+    #   size_hint: 1, None 
+    #   height: "30dp"   
+    #   radius: 0,0,0,0       
+    #   pos_hint: {"center_x": 0.5, "center_y": 0.5}
+    #   FloatLayout:
+        
+    #     MDTextField:        
+    #       id: input_lembrete_instance_hour        
+    #       text: "00"            
+    #       width: "10dp"
+    #       height: "50dp"   
+    #       required: True      
+    #       pos_hint: {"center_x": 0.1, "center_y": 0.5}
+    #       helper_text_mode:"on_error"
+    #       input_type: 'number'
+    #       input_filter: "int"     
+    #       mode: 'round'
+    #     MDLabel:
+    #       id: title
+    #       text:":"
+    #       halign: "center"
+    #       font_style: "H6"
+    #       pos_hint: {"center_x": 0.3, "center_y": 0.5}
+    #       theme_text_color: "Custom"
+    #       bold:True
+    #       text_color: "black"
+    #     MDTextField:        
+    #       id: input_lembrete_instance_minute        
+    #       text: "00"
+    #       height: "10dp"
+    #       width: "50dp"       
+    #       required: True      
+    #       pos_hint: {"center_x": 0.5, "center_y": 0.5}
+    #       helper_text_mode:"on_error"
+    #       input_type: 'number'
+    #       input_filter: "int"     
+    #       mode: 'round'
+    #     MDLabel:
+    #       id: title
+    #       text:":"
+    #       halign: "center"
+    #       font_style: "H6"
+    #       pos_hint: {"center_x": 0.7, "center_y": 0.5}
+    #       theme_text_color: "Custom"
+    #       bold:True
+    #       text_color: "black"
+
+    #     MDTextField:        
+    #       id: input_lembrete_instance_second
+    #       text: "00"
+    #       # size_hint: 0.1, None 
+    #       height: "10dp"
+    #       width: "50dp"
+    #       required: True      
+    #       pos_hint: {"center_x": 0.9, "center_y": 0.5}
+    #       helper_text_mode:"on_error"
+    #       input_type: 'number'
+    #       input_filter: "int"     
+    #       mode: 'round'
+    MDRoundFlatIconButton:
+      icon: "check"
+      text: "Salvar"
+      pos_hint: {"center_x": 0.2, "center_y": 0.3}
+      on_release:
+        app.save_lembrete()
         root.manager.transition.direction = "right"
         root.manager.current = "main"
-      pos_hint: {"center_x": 0.6, "center_y": 0.5}
-      icon_color: "white"
-      line_color: "white"
 
-    MDIconButton:    
-      icon: "images/stop_icon.png"      
-      on_release: app.stop_clock()
-      pos_hint: {"center_x": 0.4, "center_y": 0.5}
-      icon_color: "white"
-      line_color: "white"
+    MDRoundFlatIconButton:
+      icon: "close"
+      text: "Cancelar"
+      on_release:
+        root.manager.transition.direction = "right"
+        root.manager.current = "main"
+      pos_hint: {"center_x": 0.8, "center_y": 0.3}
