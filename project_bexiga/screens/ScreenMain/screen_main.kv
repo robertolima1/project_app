@@ -16,6 +16,7 @@
       size: "50dp", "50dp"     
       radius: 0,0,0,0       
       MDFloatLayout:        
+            
         MDLabel:
           id: title
           text:"Home"
@@ -25,9 +26,22 @@
           theme_text_color: "Custom"
           bold:True
           text_color: "#004040"
+        MDCard:
+          id: container_bexiga
+          pos_hint: {"center_x": 0.75, "center_y": 0.5}    
+          size_hint: None, 1
+          size: "60dp", "50dp"     
+          radius: 0,0,0,0
+          md_bg_color:"#67AB9F"           
+          BoxLayout:          
+            orientation: "horizontal"
+            spacing: "1dp"
+            MDIconButton:
+              icon: 'images/bexiga_lembrete.png'          
+              icon_size: "20sp"
         MDLabel:
           id: count
-          text:"00:00:00"
+          text:"[0] 00:00:00"
           halign: "center"
           font_style: "Body2"
           pos_hint: {"center_x": 0.9, "center_y": 0.5}
@@ -39,7 +53,7 @@
           text:""
           halign: "center"
           font_style: "Body2"
-          pos_hint: {"center_x": 0.8, "center_y": 0.5}
+          pos_hint: {"center_x": 1, "center_y": 0.5}
           theme_text_color: "Custom"
           bold:True
           text_color: "#004040"

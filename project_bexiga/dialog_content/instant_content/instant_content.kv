@@ -1,0 +1,23 @@
+<InstantContent>
+  orientation: "horizontal"
+  spacing: "5dp"
+  size_hint_y: None
+  height: "80dp"
+
+  MDTextField:
+    hint_text: "Horas"
+    required: True          
+    helper_text_mode:"on_error"
+    input_type: 'number'
+    input_filter: "int"         
+  MDLabel:
+    text: ":"
+    halign: "center"
+    font_style: "H6"
+    bold: True
+  MDTextField:
+    hint_text: "Minuto"
+    required: True          
+    helper_text_mode:"on_error"
+    input_type: 'number'
+    input_filter: "int"         

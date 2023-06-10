@@ -30,7 +30,14 @@ class DatabaseManager:
     records = c.fetchall()
     
     return self.normalize_lembrete(records)
-   
+  def get_lembrete_by_id(self, lembrete_id):
+    c = self.connection.cursor()
+    c.execute(f"SELECT lembrete_id, lembrete_title, lembrete_describe, lembrete_count_repeat, on_start, lembrete_timestamp, insertion_date \
+              FROM LEMBRETE WHERE lembrete_id = '{lembrete_id}'")
+    records = c.fetchall()
+    
+    return self.normalize_lembrete(records)[0]
+    
   def save_lembrete(self, instance, describe, title, number_repeat):
     c = self.connection.cursor()
     instante_dt = datetime.strptime(instance, '%H:%M:%S')

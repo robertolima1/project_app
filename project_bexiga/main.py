@@ -1,6 +1,7 @@
 import datetime
 from kivymd.app import MDApp
 from kivymd.uix.screenmanager import MDScreenManager
+from dialog_content.instant_content.instant_content import InstantContent
 from screens.ScreenMain.screen_main import ScreenMainView
 from screens.ScreenWelcome.screen_welcome import ScreenWelcomeView
 from screens.ScreenAlerta.screen_alerta import ScreenAlertaView
@@ -10,7 +11,8 @@ from kivymd.uix.list import TwoLineAvatarIconListItem, IconRightWidget,IconLeftW
 from kivymd.uix.pickers import MDDatePicker,MDTimePicker
 from repository.database_manager import DatabaseManager
 from utils.clock_manager import ClockManager
-from domain.lembrete import Lembrete
+from kivymd.uix.dialog import MDDialog
+from kivymd.uix.button import MDFlatButton
 
 class MainApp(MDApp):
   def __init__(self, **kwargs):
@@ -20,6 +22,8 @@ class MainApp(MDApp):
     self.db = DatabaseManager()   
     self.clock = None
     self.last_lembrete_start = None
+    self.dialog = None
+
 
   def build(self):
     self.sm.add_widget(ScreenWelcomeView())
@@ -45,60 +49,16 @@ class MainApp(MDApp):
     self.sm.transition.direction = "left"
     self.sm.current = "alerta-descricao"
 
-  def start_clock(self):
-    self.clock = ClockManager(1, 0, self.sm.get_screen("main").ids.count)    
+  def start_clock(self, lembrete_timestamp, number_count):
+    timestamp = datetime.datetime.strptime(lembrete_timestamp, '%Y-%m-%d %H:%M:%S').time()
+    self.clock = ClockManager(1, 0, self.sm.get_screen("main").ids.count, timestamp, number_count)    
     self.clock.start()
     
   def stop_clock(self):
     self.clock.stop()
     
-  def on_save(self, instance, value, date_range):
-    '''
-    Events called when the "OK" dialog box button is clicked.
-
-    :type instance: <kivymd.uix.picker.MDDatePicker object>;
-    :param value: selected date;
-    :type value: <class 'datetime.date'>;
-    :param date_range: list of 'datetime.date' objects in the selected range;
-    :type date_range: <class 'list'>;
-    '''
-
-    print(instance, value, date_range)
-
-  def on_cancel(self, instance, value):
-      '''Events called when the "CANCEL" dialog box button is clicked.'''
-
-  def show_date_picker(self):
-    date_dialog = MDDatePicker(
-      title= "Selecione o Dia",
-       min_year = datetime.date.today().year,                                 
-    )
-    date_dialog.bind(on_save=self.on_save, on_cancel=self.on_cancel)
-    date_dialog.open()
-  
-  def cancel_time(self,instance, time):
-    print("TESTE CANCLE")
-    
   def on_save_time(self,instance, time):
     self.sm.get_screen("lembrete-descricao").ids.input_lembrete_instance.text = str(time)    
-    
-  def show_time_picker(self):
-    
-    previous_time = datetime.datetime.strptime("00:00:00", '%H:%M:%S').time()
-    time_dialog = MDTimePicker()
-    time_dialog.bind(on_cancel = self.cancel_time,time = self.get_time, on_save = self.on_save_time)
-    time_dialog.set_time(previous_time)
-    time_dialog.open()
-
-  def get_time(self, instance, time):
-    '''
-    The method returns the set time.
-
-    :type instance: <kivymd.uix.picker.MDTimePicker object>
-    :type time: <class 'datetime.time'>
-    '''    
-
-    return time  
   
   def populate_screen(self, parent, screen_name):
     print(screen_name)
@@ -149,7 +109,8 @@ class MainApp(MDApp):
       if(self.last_lembrete_start is not None and self.last_lembrete_start != element):
         self.db.set_lembrete_on_start(self.last_lembrete_start.id, False)
         self.last_lembrete_start.icon = 'play'        
-      self.start_clock()
+      lembrete = self.db.get_lembrete_by_id(element.id)
+      self.start_clock(lembrete.lembrete_timestamp, lembrete.lembrete_count_repeat)
       self.db.set_lembrete_on_start(element.id, True)
       element.icon = 'stop'
       self.last_lembrete_start = element
@@ -159,4 +120,44 @@ class MainApp(MDApp):
   def delete_lembrete(self,element):
     self.db.delete_lembrete(element.id)
     self.sm.get_screen("main").ids.bottom_navigation.switch_tab("Screen 4")
+  
+  def cancel_dialog(self, obj):
+    if self.dialog:
+      self.dialog.dismiss()
+  
+  def confirm_dialog(self,obj):
+    if self.dialog:
+      minutes = int(self.dialog.content_cls.children[0].text)
+      hours = int(self.dialog.content_cls.children[2].text)      
+      self.sm.get_screen("lembrete-descricao").ids.input_lembrete_instance.text = str(datetime.time(hour=hours,minute=minutes))
+      self.dialog.dismiss()
+      
+  def show_confirmation_dialog(self):
+    if not self.dialog:
+        self.dialog = MDDialog(
+            title="Digite o tempo do lembrete",
+            radius=[20, 7, 20, 7],
+            type="custom",
+            content_cls=InstantContent(),
+            buttons=[
+                MDFlatButton(
+                    id = "input_dialog_hours",
+                    text="CANCEL",
+                    theme_text_color="Custom",
+                    text_color=self.theme_cls.primary_color,
+                    on_release = self.cancel_dialog
+                ),
+                MDFlatButton(
+                    id = "input_dialog_minute",
+                    text="OK",
+                    theme_text_color="Custom",
+                    text_color=self.theme_cls.primary_color,
+                    on_release = self.confirm_dialog
+                ),
+            ],
+        )
+    self.dialog.open()
+    
+
+
 MainApp().run()
