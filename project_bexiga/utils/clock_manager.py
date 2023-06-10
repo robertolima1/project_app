@@ -6,6 +6,7 @@ from kivy.clock import Clock
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton
 from kivymd.theming import ThemeManager
+import plyer
 
 class ClockManager:
   dialog = None
@@ -30,6 +31,7 @@ class ClockManager:
       time = datetime.time(hour = 0,minute = 0)
       self.number = 0
       self.show_confirmation_dialog(self.number_count)
+      plyer.notification.notify(title = "Projeto Bexiga", message = f"O lembrete terminou. Faltam {self.number_count}")
     self.element.text = f'[{self.number_count}] {time.strftime("%X")}'
   # To start the count
   def start(self):
