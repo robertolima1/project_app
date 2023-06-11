@@ -26,7 +26,7 @@ class ClockManager:
   def increment_time(self, interval):
     self.number += self.interval
     time = self.build_time()
-    if(time == self.lembrete_timestamp):
+    if(time == self.lembrete_timestamp and self.number_count >=1):
       self.number_count-=1
       time = datetime.time(hour = 0,minute = 0)
       self.number = 0
