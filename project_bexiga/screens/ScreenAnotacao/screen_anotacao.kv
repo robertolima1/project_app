@@ -1,5 +1,5 @@
 <ScreenAnotacaoView>:
-  name: "screen_anotacao"
+  name: "anotacao"
   md_bg_color: "#67AB9F"
   FloatLayout:
     Image:
@@ -8,14 +8,15 @@
       size: "200dp", "200dp"
       pos_hint: {"center_x": 0.5, "center_y": 0.5}
 
-    MDIconButton:    
-      icon: "calendar-account-outline"
-      icon_size: "50sp"
-      on_release: app.show_date_picker()
-      pos_hint: {"center_x": 0.9, "center_y": 0.1}
-      icon_color: "white"
-      line_color: "white"    
     ScrollView:
       pos_hint: {"center_x": 0.5, "center_y": 0.5}
       MDList:
         id: list_anotacao
+
+    MDIconButton:
+      icon: "plus"     
+      theme_icon_color: "Custom"
+      icon_color: "white"
+      md_bg_color: "#FF7AA8"
+      pos_hint: {"center_x": 0.9, "center_y": 0.1}
+      on_release: app.setAnotacaoDescribe(True)
