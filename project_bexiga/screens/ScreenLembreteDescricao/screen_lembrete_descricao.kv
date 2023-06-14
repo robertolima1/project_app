@@ -13,21 +13,21 @@
           id: title
           text:"Lembrete Descricao"
           halign: "center"
-          font_style: "Body2"
+          font_style: "H6"
           pos_hint: {"center_x": 0.5, "center_y": 0.5}
           theme_text_color: "Custom"
           bold:True
           text_color: "#004040"
         MDIconButton:
-          icon: "arrow-left"
-          pos_hint: {"center_x": 0.02, "center_y": .5}
+          icon: "images/arrow.png"          
+          pos_hint: {"center_x": 0.06, "center_y": .5}
           on_release: 
             root.manager.transition.direction = "right"
             root.manager.current = "main"
     MDSeparator:
       color: "#004040"
       size_hint_y: None
-      height: dp(3) 
+      height: dp(2) 
       pos_hint: {"center_x": 0.5, "center_y": 0.91}
     MDIconButton:    
       icon: "timer"
@@ -91,18 +91,26 @@
       mode: "fill"
       height: "30dp"
 
-    MDRoundFlatIconButton:
+    MDRectangleFlatButton:
       id: button_save
       icon: "check"
       text: "Salvar"
       pos_hint: {"center_x": 0.2, "center_y": 0.2}
+      font_style:"Button" 
+      theme_text_color: "Custom"
+      md_bg_color:"#FF7AA8"
+      text_color: "white"
       on_release:
         app.save_lembrete()
 
 
-    MDRoundFlatIconButton:
+    MDRectangleFlatButton:
       icon: "close"
       text: "Cancelar"
+      font_style:"Button"
+      theme_text_color: "Custom"
+      md_bg_color:"#FF7AA8"
+      text_color: "white"
       on_release:
         root.manager.transition.direction = "right"
         root.manager.current = "main"

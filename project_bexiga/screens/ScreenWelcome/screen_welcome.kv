@@ -27,10 +27,14 @@
       bold:True
       text_color: "white"
     
-    MDRoundFlatButton:
+    MDRaisedButton:
       text: "Vamos lá!"
       text_color: "white"
       pos_hint: {"center_x": 0.5, "center_y": 0.2}
+      font_style:"Button"
+      theme_text_color: "Custom"
+      md_bg_color:"#FF7AA8"
+      text_color: "white"
       on_release:                      
         root.manager.transition.direction = "up"
         root.manager.current = "main"
