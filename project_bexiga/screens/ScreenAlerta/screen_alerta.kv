@@ -1,34 +1,14 @@
 <ScreenAlertaView>:
   name: "alerta"
   md_bg_color: "#67AB9F"
-  MDBoxLayout:
-    orientation: "vertical"
-    MDCard:      
-      md_bg_color:"#67AB9F"    
-      size_hint: 1, None
-      size: "50dp", "50dp"     
-      radius: 0,0,0,0       
-      MDFloatLayout:        
-        MDLabel:
-          id: title
-          text:"Alertas"
-          halign: "center"
-          font_style: "Body2"
-          pos_hint: {"center_x": 0.5, "center_y": 0.5}
-          theme_text_color: "Custom"
-          bold:True
-          text_color: "#004040"
-        MDIconButton:
-          icon: "arrow-left"
-          pos_hint: {"center_x": 0.02, "center_y": .5}
-          on_release: 
-            root.manager.transition.direction = "up"
-            root.manager.current = "main"
-    MDSeparator:
-      color: "#004040"
-      size_hint_y: None
-      height: dp(3) 
+  FloatLayout:
+    Image:
+      source: 'images/flower_background.png'
+      size_hint: (None, None)
+      size: "200dp", "200dp"
+      pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
     ScrollView:
-      # pos_hint: {"center_x": 0.5, "center_y": 0.5}
+      pos_hint: {"center_x": 0.5, "center_y": 0.5}
       MDList:
         id: list_alert

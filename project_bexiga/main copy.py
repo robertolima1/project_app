@@ -1,7 +1,6 @@
 import datetime
 from kivymd.app import MDApp
 from kivymd.uix.screenmanager import MDScreenManager
-from dialog.validate_dialog import ValidateDialog
 from dialog_content.instant_content.instant_content import InstantContent
 from screens.ScreenMain.screen_main import ScreenMainView
 from screens.ScreenWelcome.screen_welcome import ScreenWelcomeView
@@ -27,13 +26,12 @@ class MainApp(MDApp):
     self.clock = None
     self.last_lembrete_start = None
     self.dialog = None
-    self.validateDialog = ValidateDialog()
 
 
   def build(self):
     self.sm.add_widget(ScreenWelcomeView())
     self.sm.add_widget(ScreenMainView())
-    # self.sm.add_widget(ScreenAlertaView())
+    self.sm.add_widget(ScreenAlertaView())
     self.sm.add_widget(ScreenAlertaDescricao())
     self.sm.add_widget(ScreenLembreteDescricao())
     self.sm.add_widget(ScreenTecnicaDescricao())    
@@ -43,11 +41,15 @@ class MainApp(MDApp):
   
   def on_start(self):    
     self.db.set_lembrete_all_on_start()
-
+    alertas = self.db.getAllAlerta()
+    for alerta in alertas:
+       self.sm.get_screen("alerta").ids.list_alert.add_widget(TwoLineListItem(text=alerta.alerta_title, secondary_text = alerta.alerta_describe , on_release= self.setAlertDescribe))
+  
   def welcome(self):
     self.sm.get_screen("main").ids.bottom_navigation.switch_tab("Screen Home")    
            
-  def setAlertDescribe(self, TwoLineListItem):    
+  def setAlertDescribe(self, TwoLineListItem):
+    print(TwoLineListItem.text, TwoLineListItem.secondary_text)
     self.sm.get_screen("alerta-descricao").ids.alerta_title.text = TwoLineListItem.text
     self.sm.get_screen("alerta-descricao").ids.alerta_describe.text = TwoLineListItem.secondary_text
     self.sm.transition.direction = "left"
@@ -66,13 +68,7 @@ class MainApp(MDApp):
   
   def populate_screen(self, parent, screen_name):
 
-    if(screen_name == "alerta"):
-      alertas = self.db.getAllAlerta()
-      parent.children[1].ids.list_alert.clear_widgets()
-      for alerta in alertas:
-        parent.children[1].ids.list_alert.add_widget(TwoLineListItem(text=alerta.alerta_title, secondary_text = alerta.alerta_describe , on_release= self.setAlertDescribe))
-    
-    elif(screen_name == 'anotacao'):
+    if(screen_name == 'anotacao'):
       anotacoes = self.db.getAllAnotacao()      
       parent.children[1].ids.list_anotacao.clear_widgets()
       
@@ -160,17 +156,12 @@ class MainApp(MDApp):
     title = self.sm.get_screen("anotacao-descricao").ids.input_title.text
     describe = self.sm.get_screen("anotacao-descricao").ids.input_describe.text
     date = self.sm.get_screen("anotacao-descricao").ids.input_data.text
-    if(not (title and describe and date)):
-      self.validateDialog.show_validate_dialog("Necessário preencher todos os campos corretamente!")      
-      return
     self.sm.get_screen("main").ids.bottom_navigation.switch_tab("Screen Home")
     if(anotacao_id== '' or anotacao_id is None):      
       self.db.save_anotacao(date, describe, title)
     else:
       
       self.db.update_anotacao(anotacao_id, describe, title, date)
-    self.sm.transition.direction = "right"
-    self.sm.current = "main"    
         
   def save_lembrete(self):
     lembrete_id = self.sm.get_screen("lembrete-descricao").ids.input_lembrete_id.text
@@ -179,17 +170,15 @@ class MainApp(MDApp):
     title = self.sm.get_screen("lembrete-descricao").ids.input_lembrete_title.text
     number_repeat = self.sm.get_screen("lembrete-descricao").ids.input_lembrete_number_repeat.text
     describe = self.sm.get_screen("lembrete-descricao").ids.input_lembrete_describe.text
-    if(not (instance and title and number_repeat and describe ) or int(number_repeat)>6):
-      self.validateDialog.show_validate_dialog("Necessário preencher todos os campos corretamente!")
-      self.sm.get_screen("lembrete-descricao").ids.input_lembrete_number_repeat.error = True      
+    if(not (instance and title and number_repeat and describe)):
+      self.show_validate_dialog("Necessário preencher todos os campos!")
       return
     self.sm.get_screen("main").ids.bottom_navigation.switch_tab("Screen Home")
     if(lembrete_id== '' or lembrete_id is None):      
       self.db.save_lembrete(instance, describe, title, number_repeat)
     else:
       self.db.update_lembrete(lembrete_id, describe, title, number_repeat)
-    self.sm.transition.direction = "right"
-    self.sm.current = "main"    
+
     
   def start_lembrete(self, element):
     if(element.icon == 'play'):
@@ -216,8 +205,8 @@ class MainApp(MDApp):
     if self.dialog:
       try:
         time = None
-        minutes = int(self.dialog.content_cls.ids.input_minuto.text)
-        hours = int(self.dialog.content_cls.ids.input_hora.text)      
+        minutes = int(self.dialog.content_cls.children[0].text)
+        hours = int(self.dialog.content_cls.children[2].text)      
         time = str(datetime.time(hour=hours,minute=minutes))
         self.dialog.content_cls.ids.instant_error.text = ""
         self.sm.get_screen("lembrete-descricao").ids.input_lembrete_instance.text = time
@@ -253,7 +242,25 @@ class MainApp(MDApp):
             ],
         )
     self.dialog.open()
-        
+    
+  def show_validate_dialog(self, message):
+    if not self.dialog:
+        self.dialog = MDDialog(
+            title="Atenção!",
+            radius=[20, 7, 20, 7],
+            type="custom",
+            content_cls=MDLabel(text= message),
+            buttons=[                
+                MDFlatButton(                    
+                    text="OK",
+                    theme_text_color="Custom",
+                    text_color=self.theme_cls.primary_color,
+                    on_release = self.cancel_dialog
+                ),
+            ],
+        )
+    self.dialog.open()
+    
   def on_save(self, instance, value, date_range):    
     self.sm.get_screen("anotacao-descricao").ids.input_data.text = str(value)
     

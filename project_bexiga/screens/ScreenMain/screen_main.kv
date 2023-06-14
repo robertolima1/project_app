@@ -4,7 +4,7 @@
 #:import ScreenLembreteView screens.ScreenLembrete.screen_lembrete
 #:import ScreenAnotacaoView screens.ScreenAnotacao.screen_anotacao
 #:import ScreenWelcomeView screens.ScreenWelcome.screen_welcome
-
+#:import ScreenAlertaView screens.ScreenAlerta.screen_alerta
 
 <ScreenMainView>
   name: "main"
@@ -26,43 +26,35 @@
           theme_text_color: "Custom"
           bold:True
           text_color: "#004040"
-        MDCard:
-          id: container_bexiga
-          pos_hint: {"center_x": 0.75, "center_y": 0.5}    
-          size_hint: None, 1
-          size: "60dp", "50dp"     
-          radius: 0,0,0,0
-          md_bg_color:"#67AB9F"           
-          BoxLayout:          
-            orientation: "horizontal"
-            spacing: "1dp"
-            MDIconButton:
-              icon: 'images/bexiga_lembrete.png'          
-              icon_size: "20sp"
+        # MDCard:
+        #   id: container_bexiga
+        #   pos_hint: {"center_x": 0.75, "center_y": 0.5}    
+        #   size_hint: None, 1
+        #   size: "60dp", "50dp"     
+        #   radius: 0,0,0,0
+        #   md_bg_color:"#67AB9F"           
+        #   BoxLayout:          
+        #     orientation: "horizontal"
+        #     spacing: "1dp"
+        #     MDIconButton:
+        #       icon: 'images/bexiga_lembrete.png'          
+        #       icon_size: "20sp"
         MDLabel:
           id: count
           text:"[0] 00:00:00"
-          halign: "center"
+          halign: "right"
           font_style: "Body2"
-          pos_hint: {"center_x": 0.8, "center_y": 0.5}
+          pos_hint: {"center_x": 0.5, "center_y": 0.5}
           theme_text_color: "Custom"
           bold:True
           text_color: "#004040"
-        MDLabel:
-          id: label_lembrte
-          text:""
-          halign: "center"
-          font_style: "Body2"
-          pos_hint: {"center_x": 1, "center_y": 0.5}
-          theme_text_color: "Custom"
-          bold:True
-          text_color: "#004040"
-        MDIconButton:
-          icon: "language-python"
-          pos_hint: {"center_x": 0.98, "center_y": .5}
-          on_release: 
-            root.manager.transition.direction = "down"
-            root.manager.current = "alerta"
+
+        # MDIconButton:
+        #   icon: "language-python"
+        #   pos_hint: {"center_x": 0.98, "center_y": .5}
+        #   on_release: 
+        #     root.manager.transition.direction = "down"
+        #     root.manager.current = "alerta"
     MDSeparator:
       color: "#004040"
       size_hint_y: None
@@ -76,9 +68,9 @@
         name: "Screen 2"        
         icon: "images/bloco-de-anotacoes.png"
         on_tab_press:
-          root.ids.title.text = "Vídeos"
-          app.populate_screen(self,"video")
-        ScreenVideoView:
+          root.ids.title.text = "Alertas"
+          app.populate_screen(self,"alerta")
+        ScreenAlertaView:
         MDSeparator:
           color: "#004040"
           size_hint_y: None

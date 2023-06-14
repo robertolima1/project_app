@@ -35,29 +35,40 @@
       disabled: True      
     MDTextField:        
       id: input_title       
-      hint_text: 'Digite o título da anotação'               
-      size_hint: 1, None 
-      height: "30dp"           
+      hint_text: 'Digite o título da anotação'                     
       required: True      
       pos_hint: {"center_x": 0.5, "center_y": 0.8}  
-      mode: 'round'    
+      size_hint: 0.97, None
+      mode: "fill"
+      height: "30dp"
+      required: True    
+      helper_text_mode:"on_error"
+      max_text_length: 30      
 
     MDTextField:        
       id: input_describe
       pos_hint: {"center_x": 0.5, "center_y": 0.6}
       multiline: True
       hint_text: 'Digite a descrição da anotação'      
-      mode: 'round'
+      size_hint: 0.97, None
+      mode: "fill"
+      height: "30dp"
+      required: True    
+      helper_text_mode:"on_error"
+      max_text_length: 200      
 
     MDTextField:        
       id: input_data       
       hint_text: "DD/MM/YYYY"            
-      size_hint: 1, None 
+      size_hint: 0.97, None
       height: "30dp"     
       disabled: 'True'
       required: True      
       pos_hint: {"center_x": 0.5, "center_y": 0.4}  
-      mode: 'round'    
+      size_hint: 0.97, None
+      mode: "fill"        
+      helper_text_mode:"on_error"      
+
     MDRoundFlatIconButton:
       id: button_save
       icon: "check"
@@ -65,8 +76,6 @@
       pos_hint: {"center_x": 0.2, "center_y": 0.3}
       on_release:
         app.save_anotacao()
-        root.manager.transition.direction = "right"
-        root.manager.current = "main"    
 
     MDRoundFlatIconButton:
       icon: "close"
