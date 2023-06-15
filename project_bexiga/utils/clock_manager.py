@@ -2,7 +2,7 @@
 import datetime
 from kivy.clock import Clock
 
-# from dialog.dialog_confirmation import DialogConfirmation
+from kivymd.uix.list import TwoLineListItem
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton
 from kivymd.theming import ThemeManager
@@ -11,7 +11,7 @@ import plyer
 class ClockManager:
   dialog = None
   
-  def __init__(self, interval, initial_value, element, lembrete_timestamp, number_count, element_item):
+  def __init__(self, interval, initial_value, element, lembrete_timestamp, number_count, element_item, notification_screen):
     self.interval = interval
     self.initial_value = initial_value
     self.number = 0
@@ -20,6 +20,7 @@ class ClockManager:
     self.number_count = number_count
     self.element = element
     self.element_item = element_item
+    self.notification_screen = notification_screen
     # Create the clock and increment the time by .1 ie 1 second.
     Clock.schedule_interval(self.increment_time,self.interval )
 
@@ -34,9 +35,9 @@ class ClockManager:
       time = datetime.time(hour = 0,minute = 0)
       self.number = 0
       self.show_confirmation_dialog(self.number_count)
-      plyer.notification.notify(title = "Projeto Bexiga", message = f"O lembrete terminou. Faltam {self.number_count}")
-      self.element.ids.lembrete_alert.opacity = 1
-      self.element.ids.lembrete_alert.badge_icon = f"numeric-{self.count}"
+      plyer.notification.notify(title = "Projeto Bexiga", message = f"O lembrete terminou. Faltam {self.number_count}")      
+      self.element.ids.lembrete_alert.icon = f"numeric-{self.count}-box-multiple-outline"
+      self.notification_screen.ids.list_notificacao.add_widget(TwoLineListItem(text="Lembrete", secondary_text = f"{self.count}"))
     self.element.ids.count.text = f'[{self.number_count}] {time.strftime("%X")}'
     if(self.number_count == 0):
       self.element_item.icon = 'play'
@@ -54,8 +55,7 @@ class ClockManager:
   def reset(self):
     self.number = 0
     self.count = 0
-    self.element.text = "[0] 00:00:00"
-    self.element.ids.lembrete_alert.opacity = 0
+    self.element.text = "[0] 00:00:00"    
     
   def build_time(self):
     numberAux = self.number

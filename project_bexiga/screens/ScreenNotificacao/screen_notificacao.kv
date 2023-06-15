@@ -1,0 +1,44 @@
+<ScreenNotificacao>:
+  name: "notificacao"
+  md_bg_color: "#67AB9F"
+  MDBoxLayout:
+    orientation: "vertical"
+    MDCard:      
+      md_bg_color:"#67AB9F"    
+      size_hint: 1, None
+      size: "50dp", "50dp"     
+      radius: 0,0,0,0       
+      MDFloatLayout:        
+        MDLabel:
+          id: title
+          text:"Notificações"
+          halign: "center"
+          font_style: "H6"
+          pos_hint: {"center_x": 0.5, "center_y": 0.5}
+          theme_text_color: "Custom"
+          bold:True
+          text_color: "#004040"
+        MDIconButton:
+          icon: "images/arrow.png"          
+          pos_hint: {"center_x": 0.06, "center_y": .5}
+          on_release: 
+            root.manager.transition.direction = "right"
+            root.manager.current = "main"
+    MDSeparator:
+      color: "#004040"
+      size_hint_y: None
+      height: dp(2) 
+    ScrollView:
+      pos_hint: {"center_x": 0.5, "center_y": 0.5}
+      MDList:
+        id: list_notificacao    
+    MDRaisedButton:
+      text: "Limpar"
+      text_color: "white"
+      pos_hint: {"center_x": 0.5, "center_y": 0.5}
+      font_style:"Button"
+      theme_text_color: "Custom"
+      md_bg_color:"#FF7AA8"
+      text_color: "white"
+      on_release:                      
+        app.limpar_notificacao()

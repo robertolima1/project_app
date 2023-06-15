@@ -26,14 +26,17 @@
           theme_text_color: "Custom"
           bold:True
           text_color: "#004040"
-        MDIcon:
-          icon: "bell-alert-outline" 
-          id:lembrete_alert
-          opacity: 0.0
-          badge_bg_color:"red"
+        MDIconButton:
+          icon: "numeric-0-box-multiple-outline" 
+          id:lembrete_alert          
+          # badge_bg_color:"red"
           halign:"left"
-          badge_icon_color:"white"
-          badge_icon: "numeric-10"
+          theme_icon_color: "Custom"
+          icon_color: "red"
+          on_release: 
+            # app.open_notification()
+            root.manager.transition.direction = "right"
+            root.manager.current = "notificacao"
           pos_hint: {"center_x": 0.02, "center_y": 0.5}          
         MDLabel:
           id: count

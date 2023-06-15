@@ -10,6 +10,7 @@ from screens.ScreenAlertaDescricao.screen_alerta_descricao import ScreenAlertaDe
 from screens.ScreenLembreteDescricao.screen_lembrete_descricao import ScreenLembreteDescricao
 from screens.ScreenTecnicaDescricao.screen_tecnica_descricao import ScreenTecnicaDescricao
 from screens.ScreenAnotacaoDescricao.screen_anotacao_descricao import ScreenAnotacaoDescricao
+from screens.ScreenNotificacao.screen_notificacao import ScreenNotificacao
 from kivymd.uix.list import TwoLineAvatarIconListItem, IconRightWidget,IconLeftWidget, TwoLineListItem
 from kivymd.uix.pickers import MDDatePicker
 from repository.database_manager import DatabaseManager
@@ -36,7 +37,7 @@ class MainApp(MDApp):
     
     self.sm.add_widget(ScreenWelcomeView())
     self.sm.add_widget(ScreenMainView())
-    # self.sm.add_widget(ScreenAlertaView())
+    self.sm.add_widget(ScreenNotificacao())
     self.sm.add_widget(ScreenAlertaDescricao())
     self.sm.add_widget(ScreenLembreteDescricao())
     self.sm.add_widget(ScreenTecnicaDescricao())    
@@ -58,7 +59,7 @@ class MainApp(MDApp):
 
   def start_clock(self, lembrete_timestamp, number_count, element_item):
     timestamp = datetime.datetime.strptime(lembrete_timestamp, '%Y-%m-%d %H:%M:%S').time()
-    self.clock = ClockManager(1, 0, self.sm.get_screen("main"), timestamp, number_count, element_item)    
+    self.clock = ClockManager(1, 0, self.sm.get_screen("main"), timestamp, number_count, element_item, self.sm.get_screen("notificacao"))    
     self.clock.start()
     
   def stop_clock(self):
@@ -67,6 +68,8 @@ class MainApp(MDApp):
   def on_save_time(self,instance, time):
     self.sm.get_screen("lembrete-descricao").ids.input_lembrete_instance.text = str(time)    
   
+  def limpar_notificacao(self):
+    self.sm.get_screen("notificacao").ids.list_notificacao.clear_widgets()
   def populate_screen(self, parent, screen_name):
 
     if(screen_name == "alerta"):
