@@ -56,9 +56,9 @@ class MainApp(MDApp):
     self.sm.transition.direction = "left"
     self.sm.current = "alerta-descricao"
 
-  def start_clock(self, lembrete_timestamp, number_count):
+  def start_clock(self, lembrete_timestamp, number_count, element_item):
     timestamp = datetime.datetime.strptime(lembrete_timestamp, '%Y-%m-%d %H:%M:%S').time()
-    self.clock = ClockManager(1, 0, self.sm.get_screen("main").ids.count, timestamp, number_count)    
+    self.clock = ClockManager(1, 0, self.sm.get_screen("main"), timestamp, number_count, element_item)    
     self.clock.start()
     
   def stop_clock(self):
@@ -200,7 +200,7 @@ class MainApp(MDApp):
         self.db.set_lembrete_on_start(self.last_lembrete_start.id, False)
         self.last_lembrete_start.icon = 'play'        
       lembrete = self.db.get_lembrete_by_id(element.id)
-      self.start_clock(lembrete.lembrete_timestamp, lembrete.lembrete_count_repeat)
+      self.start_clock(lembrete.lembrete_timestamp, lembrete.lembrete_count_repeat, element)
       self.db.set_lembrete_on_start(element.id, True)
       element.icon = 'stop'
       self.last_lembrete_start = element

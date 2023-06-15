@@ -11,13 +11,15 @@ import plyer
 class ClockManager:
   dialog = None
   
-  def __init__(self, interval, initial_value, element, lembrete_timestamp, number_count):
+  def __init__(self, interval, initial_value, element, lembrete_timestamp, number_count, element_item):
     self.interval = interval
     self.initial_value = initial_value
     self.number = 0
+    self.count = 0
     self.lembrete_timestamp = lembrete_timestamp
     self.number_count = number_count
     self.element = element
+    self.element_item = element_item
     # Create the clock and increment the time by .1 ie 1 second.
     Clock.schedule_interval(self.increment_time,self.interval )
 
@@ -28,11 +30,17 @@ class ClockManager:
     time = self.build_time()
     if(time == self.lembrete_timestamp and self.number_count >=1):
       self.number_count-=1
+      self.count+=1
       time = datetime.time(hour = 0,minute = 0)
       self.number = 0
       self.show_confirmation_dialog(self.number_count)
       plyer.notification.notify(title = "Projeto Bexiga", message = f"O lembrete terminou. Faltam {self.number_count}")
-    self.element.text = f'[{self.number_count}] {time.strftime("%X")}'
+      self.element.ids.lembrete_alert.opacity = 1
+      self.element.ids.lembrete_alert.badge_icon = f"numeric-{self.count}"
+    self.element.ids.count.text = f'[{self.number_count}] {time.strftime("%X")}'
+    if(self.number_count == 0):
+      self.element_item.icon = 'play'
+      self.stop()      
   # To start the count
   def start(self):
         
@@ -45,7 +53,9 @@ class ClockManager:
     self.reset()  
   def reset(self):
     self.number = 0
+    self.count = 0
     self.element.text = "[0] 00:00:00"
+    self.element.ids.lembrete_alert.opacity = 0
     
   def build_time(self):
     numberAux = self.number
@@ -59,6 +69,7 @@ class ClockManager:
   
   def confirm_dialog(self,obj):    
     self.dialog.dismiss()
+    self.dialog = None
       
   
   def show_confirmation_dialog(self, lembrete_number_count):

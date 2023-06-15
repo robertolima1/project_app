@@ -20,29 +20,25 @@
         MDLabel:
           id: title
           text:"Home"
-          halign: "center"
+          halign: "center"        
           font_style: "H6"
           pos_hint: {"center_x": 0.5, "center_y": 0.5}
           theme_text_color: "Custom"
           bold:True
           text_color: "#004040"
-        # MDCard:
-        #   id: container_bexiga
-        #   pos_hint: {"center_x": 0.75, "center_y": 0.5}    
-        #   size_hint: None, 1
-        #   size: "60dp", "50dp"     
-        #   radius: 0,0,0,0
-        #   md_bg_color:"#67AB9F"           
-        #   BoxLayout:          
-        #     orientation: "horizontal"
-        #     spacing: "1dp"
-        #     MDIconButton:
-        #       icon: 'images/bexiga_lembrete.png'          
-        #       icon_size: "20sp"
+        MDIcon:
+          icon: "bell-alert-outline" 
+          id:lembrete_alert
+          opacity: 0.0
+          badge_bg_color:"red"
+          halign:"left"
+          badge_icon_color:"white"
+          badge_icon: "numeric-10"
+          pos_hint: {"center_x": 0.02, "center_y": 0.5}          
         MDLabel:
           id: count
           text:"[0] 00:00:00"
-          halign: "right"
+          halign: "right"          
           font_style: "Body2"
           pos_hint: {"center_x": 0.5, "center_y": 0.5}
           theme_text_color: "Custom"
@@ -62,11 +58,26 @@
 
     MDBottomNavigation:
       id: bottom_navigation
-      panel_color:"#67AB9F"    
-      
+      panel_color:"#67AB9F"
+      selected_color_background: 0, 0, 1, .4          
+
+      MDBottomNavigationItem:
+        name: "Screen 5"
+        icon: "images/diario.png"
+        text: "Anotações"
+        on_tab_press:
+          root.ids.title.text = "Anotações"
+          app.populate_screen(self,"anotacao")
+        ScreenAnotacaoView:          
+        MDSeparator:
+          color: "#004040"
+          size_hint_y: None
+          height: dp(2)    
+
       MDBottomNavigationItem:
         name: "Screen 2"        
-        icon: "images/bloco-de-anotacoes.png"
+        icon: "images/alert.png"  
+        text: "Alertas"       
         on_tab_press:
           root.ids.title.text = "Alertas"
           app.populate_screen(self,"alerta")
@@ -76,21 +87,10 @@
           size_hint_y: None
           height: dp(2)    
 
-      MDBottomNavigationItem:
-        name: "Screen 3"        
-        icon: "images/informacoes.png"
-        on_tab_press:
-          root.ids.title.text = "Técnicas"
-          app.populate_screen(self,"tecnica")
-        ScreenTecnicaView:
-        MDSeparator:
-          color: "#004040"
-          size_hint_y: None
-          height: dp(2)    
-
       MDBottomNavigationItem:      
         name: "Screen Home"        
-        icon: "images/casa.png"
+        icon: "images/home.png"
+        text: "Home"
         on_tab_press:
           root.ids.title.text = "Home"          
         ScreenHomeView:
@@ -100,24 +100,27 @@
           height: dp(2)          
 
       MDBottomNavigationItem:
-        name: "Screen 4"
-        icon: "images/time-and-calendar.png"
+        name: "Screen 3"        
+        icon: "images/book.png"
+        text: "Técnicas"
         on_tab_press:
-          root.ids.title.text = "Lembretes"
-          app.populate_screen(self,"lembrete")
-        ScreenLembreteView:
+          root.ids.title.text = "Técnicas"
+          app.populate_screen(self,"tecnica")
+        ScreenTecnicaView:
         MDSeparator:
           color: "#004040"
           size_hint_y: None
           height: dp(2)    
 
+
       MDBottomNavigationItem:
-        name: "Screen 5"
-        icon: "images/time-and-calendar.png"
+        name: "Screen 4"
+        icon: "images/bell.png"
+        text: "Lembretes"
         on_tab_press:
-          root.ids.title.text = "Anotações"
-          app.populate_screen(self,"anotacao")
-        ScreenAnotacaoView:          
+          root.ids.title.text = "Lembretes"
+          app.populate_screen(self,"lembrete")
+        ScreenLembreteView:
         MDSeparator:
           color: "#004040"
           size_hint_y: None
