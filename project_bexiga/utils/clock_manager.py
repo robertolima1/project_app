@@ -2,7 +2,7 @@
 import datetime
 from kivy.clock import Clock
 
-from kivymd.uix.list import TwoLineListItem
+from kivymd.uix.list import ThreeLineIconListItem, IconLeftWidget
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton
 from kivymd.theming import ThemeManager
@@ -11,7 +11,7 @@ import plyer
 class ClockManager:
   dialog = None
   
-  def __init__(self, interval, initial_value, element, lembrete_timestamp, number_count, element_item, notification_screen):
+  def __init__(self, interval, initial_value, element, lembrete_timestamp, number_count, element_item, notification_screen, lembrete_title):
     self.interval = interval
     self.initial_value = initial_value
     self.number = 0
@@ -21,6 +21,7 @@ class ClockManager:
     self.element = element
     self.element_item = element_item
     self.notification_screen = notification_screen
+    self.lembrete_title = lembrete_title
     # Create the clock and increment the time by .1 ie 1 second.
     Clock.schedule_interval(self.increment_time,self.interval )
 
@@ -36,8 +37,11 @@ class ClockManager:
       self.number = 0
       self.show_confirmation_dialog(self.number_count)
       plyer.notification.notify(title = "Projeto Bexiga", message = f"O lembrete terminou. Faltam {self.number_count}")      
-      self.element.ids.lembrete_alert.icon = f"images/icon-alert-love.png"
-      self.notification_screen.ids.list_notificacao.add_widget(TwoLineListItem(text="Lembrete", secondary_text = f"{self.count}"))
+      self.element.ids.lembrete_alert.icon = f"images/icon-alert-love-red.png"
+      icon_alert =IconLeftWidget(icon = "clock-alert-outline")
+      list_item = ThreeLineIconListItem(text=self.lembrete_title, secondary_text = f"{self.count}º Repetição", tertiary_text = datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S'))
+      list_item.add_widget(icon_alert)
+      self.notification_screen.ids.list_notificacao.add_widget(list_item)
     self.element.ids.count.text = f'[{self.number_count}] {time.strftime("%X")}'
     if(self.number_count == 0):
       self.element_item.icon = 'play'

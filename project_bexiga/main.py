@@ -57,9 +57,9 @@ class MainApp(MDApp):
     self.sm.transition.direction = "left"
     self.sm.current = "alerta-descricao"
 
-  def start_clock(self, lembrete_timestamp, number_count, element_item):
+  def start_clock(self, lembrete_timestamp, number_count, element_item, lembrete_title):
     timestamp = datetime.datetime.strptime(lembrete_timestamp, '%Y-%m-%d %H:%M:%S').time()
-    self.clock = ClockManager(1, 0, self.sm.get_screen("main"), timestamp, number_count, element_item, self.sm.get_screen("notificacao"))    
+    self.clock = ClockManager(1, 0, self.sm.get_screen("main"), timestamp, number_count, element_item, self.sm.get_screen("notificacao"), lembrete_title)    
     self.clock.start()
     
   def stop_clock(self):
@@ -70,7 +70,7 @@ class MainApp(MDApp):
   
   def limpar_notificacao(self):
     self.sm.get_screen("notificacao").ids.list_notificacao.clear_widgets()
-    self.sm.get_screen("notificacao").ids.lembrete_alert.icon = f"images/icon-alert-love-red.png"
+    self.sm.get_screen("main").ids.lembrete_alert.icon = f"images/icon-alert-love.png"
   def populate_screen(self, parent, screen_name):
 
     if(screen_name == "alerta"):
@@ -106,7 +106,7 @@ class MainApp(MDApp):
         icon_play =IconLeftWidget(icon = "play", on_release = self.start_lembrete, id = lembrete.lembrete_id)
         icon_stop =IconLeftWidget(icon = "stop", on_release = self.start_lembrete, id = lembrete.lembrete_id)
         icon_delete =IconRightWidget(icon = "trash-can-outline", on_release = self.delete_lembrete, id = lembrete.lembrete_id)
-        element = ThreeLineAvatarIconListItem(id = lembrete.lembrete_id, text=lembrete.lembrete_title, secondary_text = f"Repetições: {lembrete.lembrete_count_repeat}",tertiary_text = f"Tempo: {lembrete.lembrete_timestamp}" ,  on_release= self.setLembreteDescribeListItem)
+        element = ThreeLineAvatarIconListItem(id = lembrete.lembrete_id, text=lembrete.lembrete_title, secondary_text = f"Repetições: {lembrete.lembrete_count_repeat}",tertiary_text = f"Tempo: {datetime.datetime.strptime(lembrete.lembrete_timestamp, '%Y-%m-%d %H:%M:%S').strftime('%H:%M:%S')}" ,  on_release= self.setLembreteDescribeListItem)
         if(lembrete.on_start):
           element.add_widget(icon_stop)
         else:
@@ -206,7 +206,7 @@ class MainApp(MDApp):
         self.db.set_lembrete_on_start(self.last_lembrete_start.id, False)
         self.last_lembrete_start.icon = 'play'        
       lembrete = self.db.get_lembrete_by_id(element.id)
-      self.start_clock(lembrete.lembrete_timestamp, lembrete.lembrete_count_repeat, element)
+      self.start_clock(lembrete.lembrete_timestamp, lembrete.lembrete_count_repeat, element, lembrete.lembrete_title)
       self.db.set_lembrete_on_start(element.id, True)
       element.icon = 'stop'
       self.last_lembrete_start = element
