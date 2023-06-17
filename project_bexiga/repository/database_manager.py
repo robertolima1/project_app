@@ -112,7 +112,12 @@ class DatabaseManager:
     c = self.connection.cursor()    
     c.execute(f"DELETE FROM LEMBRETE WHERE lembrete_id = '{lembrete_id}'")
     self.connection.commit()  
-    
+
+  def delete_anotacao(self, anotacao_id):
+    c = self.connection.cursor()    
+    c.execute(f"DELETE FROM ANOTACAO WHERE anotacao_id = '{anotacao_id}'")
+    self.connection.commit()  
+       
   def normalize_alerta(self, records):
     alertas = []
     for register in records:

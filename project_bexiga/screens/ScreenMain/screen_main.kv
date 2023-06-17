@@ -27,9 +27,9 @@
           bold:True
           text_color: "#004040"
         MDIconButton:
-          icon: "numeric-0-box-multiple-outline" 
+          icon: "images/icon-alert-love.png" 
           id:lembrete_alert          
-          # badge_bg_color:"red"
+          icon_size: "15sp"
           halign:"left"
           theme_icon_color: "Custom"
           icon_color: "red"
@@ -37,12 +37,12 @@
             # app.open_notification()
             root.manager.transition.direction = "right"
             root.manager.current = "notificacao"
-          pos_hint: {"center_x": 0.02, "center_y": 0.5}          
+          pos_hint: {"center_x": 0.05, "center_y": 0.5}          
         MDLabel:
           id: count
           text:"[0] 00:00:00"
           halign: "right"          
-          font_style: "Body2"
+          font_style:"Button"
           pos_hint: {"center_x": 0.5, "center_y": 0.5}
           theme_text_color: "Custom"
           bold:True
@@ -62,12 +62,12 @@
     MDBottomNavigation:
       id: bottom_navigation
       panel_color:"#67AB9F"
-      selected_color_background: 0, 0, 1, .4          
+      selected_color_background: 0, 0, 1, .4      
 
       MDBottomNavigationItem:
         name: "Screen 5"
         icon: "images/diario.png"
-        text: "Anotações"
+        text: "Anotações"        
         on_tab_press:
           root.ids.title.text = "Anotações"
           app.populate_screen(self,"anotacao")

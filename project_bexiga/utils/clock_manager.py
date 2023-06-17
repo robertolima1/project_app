@@ -36,7 +36,7 @@ class ClockManager:
       self.number = 0
       self.show_confirmation_dialog(self.number_count)
       plyer.notification.notify(title = "Projeto Bexiga", message = f"O lembrete terminou. Faltam {self.number_count}")      
-      self.element.ids.lembrete_alert.icon = f"numeric-{self.count}-box-multiple-outline"
+      self.element.ids.lembrete_alert.icon = f"images/icon-alert-love.png"
       self.notification_screen.ids.list_notificacao.add_widget(TwoLineListItem(text="Lembrete", secondary_text = f"{self.count}"))
     self.element.ids.count.text = f'[{self.number_count}] {time.strftime("%X")}'
     if(self.number_count == 0):

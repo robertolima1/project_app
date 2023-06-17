@@ -11,7 +11,7 @@ from screens.ScreenLembreteDescricao.screen_lembrete_descricao import ScreenLemb
 from screens.ScreenTecnicaDescricao.screen_tecnica_descricao import ScreenTecnicaDescricao
 from screens.ScreenAnotacaoDescricao.screen_anotacao_descricao import ScreenAnotacaoDescricao
 from screens.ScreenNotificacao.screen_notificacao import ScreenNotificacao
-from kivymd.uix.list import TwoLineAvatarIconListItem, IconRightWidget,IconLeftWidget, TwoLineListItem
+from kivymd.uix.list import ThreeLineAvatarIconListItem,TwoLineAvatarIconListItem, IconRightWidget,IconLeftWidget, TwoLineListItem
 from kivymd.uix.pickers import MDDatePicker
 from repository.database_manager import DatabaseManager
 from utils.clock_manager import ClockManager
@@ -70,6 +70,7 @@ class MainApp(MDApp):
   
   def limpar_notificacao(self):
     self.sm.get_screen("notificacao").ids.list_notificacao.clear_widgets()
+    self.sm.get_screen("notificacao").ids.lembrete_alert.icon = f"images/icon-alert-love-red.png"
   def populate_screen(self, parent, screen_name):
 
     if(screen_name == "alerta"):
@@ -82,9 +83,11 @@ class MainApp(MDApp):
       anotacoes = self.db.getAllAnotacao()      
       parent.children[1].ids.list_anotacao.clear_widgets()
       
-      for anotacao in anotacoes:      
-        parent.children[1].ids.list_anotacao.add_widget(TwoLineListItem(id= anotacao.anotacao_id, text=anotacao.anotacao_title, secondary_text = anotacao.anotacao_describe, on_release = self.setAnotacaoDescribeListItem))       
-        
+      for anotacao in anotacoes:
+        icon_delete =IconRightWidget(icon = "trash-can-outline", on_release = self.delete_anotacao, id = anotacao.anotacao_id)      
+        element = TwoLineAvatarIconListItem(id= anotacao.anotacao_id, text=anotacao.anotacao_title, secondary_text = f"{datetime.datetime.strptime(anotacao.insertion_date, '%Y-%m-%d %H:%M:%S').strftime('%d/%m/%Y')}", on_release = self.setAnotacaoDescribeListItem)       
+        element.add_widget(icon_delete)
+        parent.children[1].ids.list_anotacao.add_widget(element)
     elif(screen_name == 'tecnica'):          
       tecnicas = self.db.getAllTecnica()
       parent.children[1].ids.list_tecnica.clear_widgets()
@@ -103,7 +106,7 @@ class MainApp(MDApp):
         icon_play =IconLeftWidget(icon = "play", on_release = self.start_lembrete, id = lembrete.lembrete_id)
         icon_stop =IconLeftWidget(icon = "stop", on_release = self.start_lembrete, id = lembrete.lembrete_id)
         icon_delete =IconRightWidget(icon = "trash-can-outline", on_release = self.delete_lembrete, id = lembrete.lembrete_id)
-        element = TwoLineAvatarIconListItem(id = lembrete.lembrete_id, text=lembrete.lembrete_title, secondary_text = lembrete.lembrete_describe,  on_release= self.setLembreteDescribeListItem)
+        element = ThreeLineAvatarIconListItem(id = lembrete.lembrete_id, text=lembrete.lembrete_title, secondary_text = f"Repetições: {lembrete.lembrete_count_repeat}",tertiary_text = f"Tempo: {lembrete.lembrete_timestamp}" ,  on_release= self.setLembreteDescribeListItem)
         if(lembrete.on_start):
           element.add_widget(icon_stop)
         else:
@@ -213,6 +216,11 @@ class MainApp(MDApp):
   def delete_lembrete(self,element):
     self.db.delete_lembrete(element.id)
     self.sm.get_screen("main").ids.bottom_navigation.switch_tab("Screen 4")
+ 
+  def delete_anotacao(self,element):
+    self.db.delete_anotacao(element.id)
+    self.sm.get_screen("main").ids.bottom_navigation.switch_tab("Screen 5")
+  
   
   def cancel_dialog(self, obj):
     if self.dialog:
