@@ -45,7 +45,7 @@ requirements = python3,kivy==2.1.0, kivymd==1.0.2, sdl2_ttf==2.0.15,pillow, sqli
 # requirements.source.kivy = ../../kivy
 
 # (str) Presplash of the application
-# presplash.filename = %(source.dir)s/data/splash.png
+presplash.filename = presplash.png
 
 # (str) Icon of the application
 icon.filename = icon.png
