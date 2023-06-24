@@ -3,6 +3,7 @@ from kivymd.app import MDApp
 from kivymd.uix.screenmanager import MDScreenManager
 from dialog.validate_dialog import ValidateDialog
 from dialog_content.instant_content.instant_content import InstantContent
+from dialog_content.instant_content.loading_content import LoadingContent
 from screens.ScreenMain.screen_main import ScreenMainView
 from screens.ScreenWelcome.screen_welcome import ScreenWelcomeView
 from screens.ScreenAlerta.screen_alerta import ScreenAlertaView
@@ -28,6 +29,7 @@ class MainApp(MDApp):
     self.clock = None
     self.last_lembrete_start = None
     self.dialog = None
+    self.dialog_loading = None
     self.validateDialog = ValidateDialog()
 
 
@@ -72,7 +74,7 @@ class MainApp(MDApp):
     self.sm.get_screen("notificacao").ids.list_notificacao.clear_widgets()
     self.sm.get_screen("main").ids.lembrete_alert.icon = f"images/icon-alert-love.png"
   def populate_screen(self, parent, screen_name):
-
+    self.loading_dialog()
     if(screen_name == "alerta"):
       alertas = self.db.getAllAlerta()
       parent.children[1].ids.list_alert.clear_widgets()
@@ -97,6 +99,7 @@ class MainApp(MDApp):
         
     elif(screen_name == 'lembrete'):    
       self.populate_lembrete(parent) 
+    self.dialog_loading.dismiss()
 
   def populate_lembrete(self, parent):
       lembretes = self.db.getAllLembrete()
@@ -242,6 +245,16 @@ class MainApp(MDApp):
         self.dialog.content_cls.ids.input_hora.text = ""
         pass
       
+  def loading_dialog(self): 
+    print("SHOW LOADING")       
+    self.dialog_loading = MDDialog(
+        size_hint=(.45, None),
+        auto_dismiss=True,
+        type="custom",        
+        content_cls=LoadingContent(),
+    )
+    self.dialog_loading.open()
+
   def show_confirmation_dialog(self):
     if not self.dialog:
         self.dialog = MDDialog(
@@ -282,5 +295,6 @@ class MainApp(MDApp):
     )
     date_dialog.bind(on_save=self.on_save, on_cancel=self.on_cancel)
     date_dialog.open()
+    
 
 MainApp().run()
