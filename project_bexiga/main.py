@@ -1,9 +1,11 @@
 import datetime
+import time
 from kivymd.app import MDApp
 from kivymd.uix.screenmanager import MDScreenManager
 from dialog.validate_dialog import ValidateDialog
 from dialog_content.instant_content.instant_content import InstantContent
 from dialog_content.instant_content.loading_content import LoadingContent
+from screens.ScreenLegislacao.screen_legislacao import ScreenLegislacao
 from screens.ScreenMain.screen_main import ScreenMainView
 from screens.ScreenWelcome.screen_welcome import ScreenWelcomeView
 from screens.ScreenAlerta.screen_alerta import ScreenAlertaView
@@ -43,7 +45,8 @@ class MainApp(MDApp):
     self.sm.add_widget(ScreenAlertaDescricao())
     self.sm.add_widget(ScreenLembreteDescricao())
     self.sm.add_widget(ScreenTecnicaDescricao())    
-    self.sm.add_widget(ScreenAnotacaoDescricao())    
+    self.sm.add_widget(ScreenAnotacaoDescricao()) 
+    self.sm.add_widget(ScreenLegislacao())   
     
     return self.sm
   
@@ -99,8 +102,11 @@ class MainApp(MDApp):
         
     elif(screen_name == 'lembrete'):    
       self.populate_lembrete(parent) 
-    self.dialog_loading.dismiss()
-
+   
+    
+  def dialog_loading_dismiss(self):
+    self.dialog_loading.dismiss()  
+    
   def populate_lembrete(self, parent):
       lembretes = self.db.getAllLembrete()
       parent.children[1].ids.list_lembrete.clear_widgets()
@@ -246,10 +252,9 @@ class MainApp(MDApp):
         pass
       
   def loading_dialog(self): 
-    print("SHOW LOADING")       
+    
     self.dialog_loading = MDDialog(
-        size_hint=(.45, None),
-        auto_dismiss=True,
+        size_hint=(.45, None),        
         type="custom",        
         content_cls=LoadingContent(),
     )
@@ -295,6 +300,8 @@ class MainApp(MDApp):
     )
     date_dialog.bind(on_save=self.on_save, on_cancel=self.on_cancel)
     date_dialog.open()
-    
+  def switch_legislacao(self):
+    self.sm.transition.direction = "left"
+    self.sm.current = "legislacao"
 
 MainApp().run()
