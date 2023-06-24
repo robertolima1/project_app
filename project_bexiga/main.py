@@ -135,8 +135,8 @@ class MainApp(MDApp):
   
   def setTecnicaDescribeListItem(self, TwoLineAvatarIconListItem):    
     tecnica = self.db.get_tecnica_by_id(TwoLineAvatarIconListItem.id)     
-    self.sm.get_screen("tecnica-descricao").ids.tecnica_title.text = tecnica.tecnica_title
-    self.sm.get_screen("tecnica-descricao").ids.tecnica_describe.text = tecnica.tecnica_describe
+    # self.sm.get_screen("tecnica-descricao").ids.tecnica_title.text = tecnica.tecnica_title
+    # self.sm.get_screen("tecnica-descricao").ids.tecnica_describe.text = tecnica.tecnica_describe
     self.sm.transition.direction = "left"
     self.sm.current = "tecnica-descricao"     
             

@@ -29,17 +29,28 @@
       size_hint_y: None
       height: dp(2) 
 
-    MDLabel:
-      id: tecnica_title      
-      halign: "center"
-      font_style: "H5"  
-      theme_text_color: "Custom"
-      bold:True
-      text_color: "#004040"
-    MDLabel:      
-      id: tecnica_describe
-      halign: "center"
-      font_style: "Body2"  
-      theme_text_color: "Custom"
-      bold:True
-      text_color: "#004040"
+    # MDLabel:
+    #   id: tecnica_title      
+    #   halign: "center"
+    #   font_style: "H5"  
+    #   theme_text_color: "Custom"
+    #   bold:True
+    #   text_color: "#004040"
+    # MDLabel:      
+    #   id: tecnica_describe
+    #   halign: "center"
+    #   font_style: "Body2"  
+    #   theme_text_color: "Custom"
+    #   bold:True
+    #   text_color: "#004040"
+
+    MDCard:      
+      md_bg_color:"#67AB9F"    
+      size_hint: 1, 1     
+      radius: 0,0,0,0       
+      MDFloatLayout:            
+        Image:
+          source: "images/tecnica-container-1.png"
+          size_hint: (1, 1)
+          # size_hint: None, None
+          pos_hint: {"center_x": 0.5, "center_y": 0.8}
