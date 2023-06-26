@@ -57,9 +57,7 @@
     MDSeparator:
       color: "#004040"
       size_hint_y: None
-      height: dp(2) 
-
-    
+      height: dp(2)     
     MDBottomNavigation:
       id: bottom_navigation
       panel_color:"#67AB9F"
@@ -72,8 +70,6 @@
         on_tab_press:
           root.ids.title.text = "Anotações"          
           app.populate_screen(self,"anotacao")
-        on_tab_touch_up:  
-          app.dialog_loading_dismiss()
         ScreenAnotacaoView:          
         MDSeparator:
           color: "#004040"
@@ -87,8 +83,7 @@
         on_tab_press:
           root.ids.title.text = "Alertas"
           app.populate_screen(self,"alerta")
-        on_tab_touch_up:  
-          app.dialog_loading_dismiss()
+
         ScreenAlertaView:
         MDSeparator:
           color: "#004040"
@@ -114,8 +109,6 @@
         on_tab_press:
           root.ids.title.text = "Técnicas"
           app.populate_screen(self,"tecnica")
-        on_tab_touch_up:  
-          app.dialog_loading_dismiss()
         ScreenTecnicaView:
         MDSeparator:
           color: "#004040"
@@ -130,8 +123,6 @@
         on_tab_press:
           root.ids.title.text = "Lembretes"
           app.populate_screen(self,"lembrete")
-        on_tab_touch_up:  
-          app.dialog_loading_dismiss()
         ScreenLembreteView:
         MDSeparator:
           color: "#004040"

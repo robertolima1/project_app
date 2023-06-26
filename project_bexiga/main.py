@@ -14,7 +14,7 @@ from screens.ScreenLembreteDescricao.screen_lembrete_descricao import ScreenLemb
 from screens.ScreenTecnicaDescricao.screen_tecnica_descricao import ScreenTecnicaDescricao
 from screens.ScreenAnotacaoDescricao.screen_anotacao_descricao import ScreenAnotacaoDescricao
 from screens.ScreenNotificacao.screen_notificacao import ScreenNotificacao
-from kivymd.uix.list import ThreeLineAvatarIconListItem,TwoLineAvatarIconListItem, IconRightWidget,IconLeftWidget, TwoLineListItem
+from kivymd.uix.list import ThreeLineAvatarIconListItem,TwoLineAvatarIconListItem, IconRightWidget,IconLeftWidget, TwoLineListItem, OneLineListItem
 from kivymd.uix.pickers import MDDatePicker
 from repository.database_manager import DatabaseManager
 from utils.clock_manager import ClockManager
@@ -98,14 +98,16 @@ class MainApp(MDApp):
       parent.children[1].ids.list_tecnica.clear_widgets()
       
       for tecnica in tecnicas:      
-        parent.children[1].ids.list_tecnica.add_widget(TwoLineListItem(id= tecnica.tecnica_id, text=tecnica.tecnica_title, secondary_text = tecnica.tecnica_describe, on_release = self.setTecnicaDescribeListItem))       
+        parent.children[1].ids.list_tecnica.add_widget(OneLineListItem(id= tecnica.tecnica_id, text=tecnica.tecnica_title,  on_release = self.setTecnicaDescribeListItem))       
         
     elif(screen_name == 'lembrete'):    
-      self.populate_lembrete(parent) 
-   
+      self.populate_lembrete(parent)    
+    self.dialog_loading_dismiss()
+    
     
   def dialog_loading_dismiss(self):
-    self.dialog_loading.dismiss()  
+    if self.dialog_loading:
+      self.dialog_loading.dismiss()  
     
   def populate_lembrete(self, parent):
       lembretes = self.db.getAllLembrete()
@@ -144,8 +146,8 @@ class MainApp(MDApp):
   
   def setTecnicaDescribeListItem(self, TwoLineAvatarIconListItem):    
     tecnica = self.db.get_tecnica_by_id(TwoLineAvatarIconListItem.id)     
-    # self.sm.get_screen("tecnica-descricao").ids.tecnica_title.text = tecnica.tecnica_title
-    # self.sm.get_screen("tecnica-descricao").ids.tecnica_describe.text = tecnica.tecnica_describe
+    self.sm.get_screen("tecnica-descricao").ids.container_title.source = tecnica.path_title
+    self.sm.get_screen("tecnica-descricao").ids.containte_ilustration.source = tecnica.path_ilustration
     self.sm.transition.direction = "left"
     self.sm.current = "tecnica-descricao"     
             
@@ -254,7 +256,7 @@ class MainApp(MDApp):
   def loading_dialog(self): 
     
     self.dialog_loading = MDDialog(
-        size_hint=(.45, None),        
+        size_hint=(0, 0),        
         type="custom",        
         content_cls=LoadingContent(),
     )
