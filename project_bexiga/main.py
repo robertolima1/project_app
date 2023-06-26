@@ -1,6 +1,6 @@
 import datetime
-import time
 from kivymd.app import MDApp
+from kivy.base import EventLoop
 from kivymd.uix.screenmanager import MDScreenManager
 from dialog.validate_dialog import ValidateDialog
 from dialog_content.instant_content.instant_content import InstantContent
@@ -19,7 +19,6 @@ from kivymd.uix.pickers import MDDatePicker
 from repository.database_manager import DatabaseManager
 from utils.clock_manager import ClockManager
 from kivymd.uix.dialog import MDDialog
-from kivymd.uix.label import MDLabel
 from kivymd.uix.button import MDFlatButton
 
 class MainApp(MDApp):
@@ -50,8 +49,16 @@ class MainApp(MDApp):
     
     return self.sm
   
+  def hook_keyboard(self, window, key, *largs):
+    if key == 27:
+       # do what you want, return True for stopping the propagation
+       self.sm.get_screen("main").ids.bottom_navigation.switch_tab("Screen Home")    
+       return True 
+      
   def on_start(self):    
     self.db.set_lembrete_all_on_start()
+    EventLoop.window.bind(on_keyboard=self.hook_keyboard)
+
 
   def welcome(self):
     self.sm.get_screen("main").ids.bottom_navigation.switch_tab("Screen Home")    
