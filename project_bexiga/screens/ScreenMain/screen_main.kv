@@ -38,15 +38,27 @@
             root.manager.transition.direction = "right"
             root.manager.current = "notificacao"
           pos_hint: {"center_x": 0.05, "center_y": 0.5}    
-        MDLabel:
-          id: count
-          text:"[0] 00:00:00"
-          halign: "right"          
-          font_style:"Button"
-          pos_hint: {"center_x": 0.5, "center_y": 0.5}
-          theme_text_color: "Custom"
-          bold:True
-          text_color: "#004040"
+        MDIconButton:
+          icon: "images/information.png" 
+          id:information
+          icon_size: "15sp"
+          halign:"left"
+          theme_icon_color: "Custom"
+          icon_color: "red"
+          on_release: 
+            # app.open_notification()
+            root.manager.transition.direction = "right"
+            root.manager.current = "informativo"
+          pos_hint: {"center_x": 0.95, "center_y": 0.5}             
+        # MDLabel:
+        #   id: count
+        #   text:"[0] 00:00:00"
+        #   halign: "right"          
+        #   font_style:"Button"
+        #   pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        #   theme_text_color: "Custom"
+        #   bold:True
+        #   text_color: "#004040"
 
         # MDIconButton:
         #   icon: "language-python"

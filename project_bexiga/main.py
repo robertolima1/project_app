@@ -14,6 +14,7 @@ from screens.ScreenLembreteDescricao.screen_lembrete_descricao import ScreenLemb
 from screens.ScreenTecnicaDescricao.screen_tecnica_descricao import ScreenTecnicaDescricao
 from screens.ScreenAnotacaoDescricao.screen_anotacao_descricao import ScreenAnotacaoDescricao
 from screens.ScreenNotificacao.screen_notificacao import ScreenNotificacao
+from screens.ScreenInformativo.screen_informativo import ScreenInformativo
 from kivymd.uix.list import ThreeLineAvatarIconListItem,TwoLineAvatarIconListItem, IconRightWidget,IconLeftWidget, TwoLineListItem, OneLineListItem
 from kivymd.uix.pickers import MDDatePicker
 from repository.database_manager import DatabaseManager
@@ -46,6 +47,7 @@ class MainApp(MDApp):
     self.sm.add_widget(ScreenTecnicaDescricao())    
     self.sm.add_widget(ScreenAnotacaoDescricao()) 
     self.sm.add_widget(ScreenLegislacao())   
+    self.sm.add_widget(ScreenInformativo())
     
     return self.sm
   
@@ -154,6 +156,7 @@ class MainApp(MDApp):
   def setTecnicaDescribeListItem(self, TwoLineAvatarIconListItem):    
     tecnica = self.db.get_tecnica_by_id(TwoLineAvatarIconListItem.id)     
     self.sm.get_screen("tecnica-descricao").ids.container_title.source = tecnica.path_title
+    self.sm.get_screen("tecnica-descricao").ids.tecnica_describe.text = tecnica.tecnica_describe
     self.sm.get_screen("tecnica-descricao").ids.containte_ilustration.source = tecnica.path_ilustration
     self.sm.transition.direction = "left"
     self.sm.current = "tecnica-descricao"     

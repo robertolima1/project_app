@@ -57,7 +57,7 @@ class DatabaseManager:
     
   def get_tecnica_by_id(self, tecnica_id):
     c = self.connection.cursor()
-    c.execute(f"SELECT tecnica_id, tecnica_title, path_title, path_ilustration, insertion_date \
+    c.execute(f"SELECT tecnica_id, tecnica_title, tecnica_describe, path_title, path_ilustration, insertion_date \
               FROM TECNICA WHERE tecnica_id = '{tecnica_id}'")
     records = c.fetchall()
     
@@ -142,7 +142,7 @@ class DatabaseManager:
   def normalize_tecnica(self, records):
     tecnicoes = []
     for register in records:
-      tecnica = Tecnica(register[0], register[1], register[2], register[3], register[4])
+      tecnica = Tecnica(register[0], register[1], register[2], register[3], register[4], register[5])
       tecnicoes.append(tecnica)
     return tecnicoes
                                        
