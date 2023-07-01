@@ -87,13 +87,13 @@ class MainApp(MDApp):
     self.sm.get_screen("main").ids.lembrete_alert.icon = f"images/icon-alert-love.png"
   def populate_screen(self, parent, screen_name):
     self.loading_dialog()
-    if(screen_name == "alerta"):
-      alertas = self.db.getAllAlerta()
-      parent.children[1].ids.list_alert.clear_widgets()
-      for alerta in alertas:
-        parent.children[1].ids.list_alert.add_widget(TwoLineListItem(text=alerta.alerta_title, secondary_text = alerta.alerta_describe , on_release= self.setAlertDescribe))
+    # if(screen_name == "alerta"):
+    #   alertas = self.db.getAllAlerta()
+    #   parent.children[1].ids.list_alert.clear_widgets()
+    #   for alerta in alertas:
+    #     parent.children[1].ids.list_alert.add_widget(TwoLineListItem(text=alerta.alerta_title, secondary_text = alerta.alerta_describe , on_release= self.setAlertDescribe))
     
-    elif(screen_name == 'anotacao'):
+    if(screen_name == 'anotacao'):
       anotacoes = self.db.getAllAnotacao()      
       parent.children[1].ids.list_anotacao.clear_widgets()
       
