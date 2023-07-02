@@ -3,7 +3,7 @@
   md_bg_color: "#67AB9F"
   FloatLayout:
     Image:
-      source: 'images/flower_background.png'
+      source: 'images/background.png'
       size_hint: (None, None)
       size: "200dp", "200dp"
       pos_hint: {"center_x": 0.5, "center_y": 0.5}
@@ -13,147 +13,196 @@
 
       MDBoxLayout:
         orientation: "vertical"
-                
-        MDLabel:      
-          # id: legislacao_describe
-          text: "Você sabe quais as principais dificuldades apontadas por mulheres com bexiga neurogênica em relação a realização do autocateterismo vesical na técnica limpa?"
+        spacing:5
+        MDLabel:
+          
+          text:"Possíveis sinais de Infecção de Trato Urinário"
           halign: "center"
-          font_style: "H6"  
+          font_style: "H5"  
           theme_text_color: "Custom"
           bold:True
-          text_color: "white"     
-
-          padding_x:10
-
+          text_color: "white"   
         MDLabel:      
-          # id: legislacao_describe
-          text: "De acordo com estudos do últimos 5 anos, mulheres relataram, principalmente:"
+          text: "É importante estar alerta aos possíveis sinais de Infecção Urinária, pois além do incômodo, ela pode gerar complicações graves. Por isso, caso sinta algum dos sintomas listados na imagem, procure um serviço de saúde."
           halign: "center"
-          font_style: "Subtitle1"  
+          font_style: "Body2"  
           theme_text_color: "Custom"
           bold:True
-          text_color: "white"     
+          text_color: "white"   
 
-          padding_x:10
+        Image:
+          source: 'images/informativo-1.png'          
+          pos_hint: {"center_x": 0.5}   
+        MDIconButton: 
+          icon: "images/arrow-right.png"          
+          pos_hint: {"center_x": 0.5}
 
-        
+
+      MDBoxLayout:
+        orientation: "vertical"
+        spacing:5
+        MDLabel:
+          
+          text:"Importância da lavagem das mãos"
+          halign: "center"
+          font_style: "H5"  
+          theme_text_color: "Custom"
+          bold:True
+          text_color: "white"   
+        MDLabel:      
+          text: "A lavagem das mãos, segundo a Agência Nacional de Vigilância Sanitária - Anvisa (2009), é uma medida eficaz de redução da microbiota transitória da pele, auxiliando no controle de infecções. Para o autocateterismo vesical, é etapa primordial, pois assegura a qualidade limpa da técnica."
+          halign: "center"
+          font_style: "Body2"  
+          theme_text_color: "Custom"
+          bold:True
+          text_color: "white"   
+        MDLabel:      
+          text: "Confira a seguir o passo a passo da técnica:"
+          halign: "center"
+          font_style: "Body2"  
+          theme_text_color: "Custom"
+          bold:True
+          text_color: "white"   
         MDIconButton:
           icon: "images/arrow-right.png"          
           pos_hint: {"center_x": 0.5}
-        
 
       MDBoxLayout:
         orientation: "vertical"
-
+        spacing:5        
+        Image:
+          source: 'images/hands_1.png'          
+          pos_hint: {"center_x": 0.5}   
         MDLabel:      
-          # id: legislacao_describe
-          text: "Dificuldades de identificação e visualização do meato uretral, além de dor e sangramento ao realizar o autocateterismo"
-          halign: "center"
-          font_style: "H6"  
-          theme_text_color: "Custom"
-          bold:True
-          italic:True
-          text_color: "white"     
-
-          padding_x:10
-
-        MDLabel:      
-          # id: legislacao_describe
-          text: "A uretra, conforme ilustrado na imagem abaixo, está entre o clitóris e a abertura da vagina. Para realizar o cateterismo vesical, deve-se introduzir a sonda na uretra, assim possibilitando o esvaziamento completo da bexiga. Para facilitar a identificação e visualização do meato uretral, é recomendável que se utilize um espelho."
-          halign: "justify"
-          font_style: "Subtitle1"  
-          theme_text_color: "Custom"          
-          text_color: "white"     
-          padding_x:10
-
-        MDCard:      
-          md_bg_color:"#67AB9F"    
-          size_hint: .5, .5        
-          radius: 0,0,0,0   
-          pos_hint: {"center_x": 0.5}  
-          Scatter:
-            # pos:500,500
-            size: 200,200
-            do_rotation: False
-            do_scale: True
-            do_translation: False
-            scale_min:1
-            scale_max:3.
-            # auto_bring_to_front: True
-            Image:
-              source: 'images/mulher.png'          
-              pos_hint: {"center_x": 0.5}            
-          
-        MDIconButton:
-          icon: "images/arrow-right.png"          
-          pos_hint: {"center_x": 0.5}        
-
-
-      MDBoxLayout:
-        orientation: "vertical"
-
-        MDLabel:      
-          # id: legislacao_describe
-          text: "O cateterismo vesical, conforme ilustrado na aba “Técnica” do aplicativo, menciona na sétima etapa o processo de lubrificação do cateter antes da sua introdução. Essa etapa é importante pois ajuda a evitar o  trauma uretral. Isso porque, o mau uso do lubrificante, cursa em resistência na introdução do cateter, dor e até mesmo sangramento."
-          halign: "justify"
-          font_style: "Body2"   
-          theme_text_color: "Custom"          
-          text_color: "white"     
-          padding_x:10
-
-        MDLabel:      
-          # id: legislacao_describe
-          text: "No entanto, tais problemas podem ser evitados pelo uso do lubrificante em quantidades adequadas, pois ele facilita o deslizamento da sonda."
-          halign: "justify"
-          font_style: "Body2"  
-          theme_text_color: "Custom"          
-          text_color: "white"     
-          padding_x:10
-        
-        MDIconButton:
-          icon: "images/arrow-right.png"          
-          pos_hint: {"center_x": 0.5}        
-
-      MDBoxLayout:
-        orientation: "vertical"
-
-        MDLabel:      
-          # id: legislacao_describe
-          text: "Constrangimento por falta de estrutura adequada para a execução do procedimento"
-          font_style: "H6"           
-          theme_text_color: "Custom"          
-          text_color: "white"     
-          padding_x:10
-          bold:True
-          italic:True
-
-        MDLabel:      
-          # id: legislacao_describe
-          text: "A dependência por terceiros gerada pela falta de estrutura adequada em espaços públicos e privados, acarreta em constrangimento na realização do cateterismo, conforme apontam estudos. \n Tal problema não deveria ocorrer, pois o dispositivo legal que rege os direitos da pessoa com deficiência, prevê o direito de acesso a todos os espaços públicos, incluindo banheiros. Isso é garantido pela Convenção Internacional sobre os Direitos das Pessoas com Deficiência. "
-          halign: "justify"
-          font_style: "Body2"  
-          theme_text_color: "Custom"          
-          text_color: "white"     
-          padding_x:10
-        
-        MDLabel:      
-          # id: legislacao_describe
-          text: "A dependência por terceiros gerada pela falta de estrutura adequada em espaços públicos e privados, acarreta em constrangimento na realização do cateterismo, conforme apontam estudos. \n Tal problema não deveria ocorrer, pois o dispositivo legal que rege os direitos da pessoa com deficiência, prevê o direito de acesso a todos os espaços públicos, incluindo banheiros. Isso é garantido pela Convenção Internacional sobre os Direitos das Pessoas com Deficiência. "
-          halign: "justify"
-          font_style: "Body2"  
-          theme_text_color: "Custom"          
-          text_color: "white"     
-          padding_x:10
-        
-        MDLabel:      
-          # id: legislacao_describe
-          text: "E para mais informações acerca dos seus direitos, clique na aba “Legislação”"
+          text: "Molhe as mãos com água"
           halign: "center"
           font_style: "Subtitle2"  
-          theme_text_color: "Custom"          
-          text_color: "white"     
-          padding_x:10
-        
-        MDIconButton:
-          icon: "images/arrow-left.png"          
-          pos_hint: {"center_x": 0.5}        
+          theme_text_color: "Custom"
+          bold:True
+          text_color: "white"   
+
+      MDBoxLayout:
+        orientation: "vertical"
+        spacing:5        
+        Image:
+          source: 'images/hands_2.png'          
+          pos_hint: {"center_x": 0.5}   
+        MDLabel:      
+          text: "Aplique sabão suficiente para cobrer toda a superfície das mãos"
+          halign: "center"
+          font_style: "Subtitle2"  
+          theme_text_color: "Custom"
+          bold:True
+          text_color: "white"             
+
+      MDBoxLayout:
+        orientation: "vertical"
+        spacing:5        
+        Image:
+          source: 'images/hands_3.png'          
+          pos_hint: {"center_x": 0.5}   
+        MDLabel:      
+          text: "Esfregue as palmas das maõs"
+          halign: "center"
+          font_style: "Subtitle2"  
+          theme_text_color: "Custom"
+          bold:True
+          text_color: "white"             
+
+      MDBoxLayout:
+        orientation: "vertical"
+        spacing:5        
+        Image:
+          source: 'images/hands_4.png'          
+          pos_hint: {"center_x": 0.5}   
+        MDLabel:      
+          text: "Palma da mão direita sobre dorso da mão esqueda com dedos entrelaçados e vice-versa"
+          halign: "center"
+          font_style: "Subtitle2"  
+          theme_text_color: "Custom"
+          bold:True
+          text_color: "white"             
+
+      MDBoxLayout:
+        orientation: "vertical"
+        spacing:5        
+        Image:
+          source: 'images/hands_5.png'          
+          pos_hint: {"center_x": 0.5}   
+        MDLabel:      
+          text: "A palma de uma mão sobre a palma da outra com os dedos entrelaçados"
+          halign: "center"
+          font_style: "Subtitle2"  
+          theme_text_color: "Custom"
+          bold:True
+          text_color: "white"                                         
+
+      MDBoxLayout:
+        orientation: "vertical"
+        spacing:5        
+        Image:
+          source: 'images/hands_6.png'          
+          pos_hint: {"center_x": 0.5}   
+        MDLabel:      
+          text: "Dorso dos dedos na palma da mão oposto com os dedos entrelaçados"
+          halign: "center"
+          font_style: "Subtitle2"  
+          theme_text_color: "Custom"
+          bold:True
+          text_color: "white"             
+
+      MDBoxLayout:
+        orientation: "vertical"
+        spacing:5        
+        Image:
+          source: 'images/hands_7.png'          
+          pos_hint: {"center_x": 0.5}   
+        MDLabel:      
+          text: "Envolva e esfregue ao redos do polegar esquerdo com a palma da mão direita e vice-versa"
+          halign: "center"
+          font_style: "Subtitle2"  
+          theme_text_color: "Custom"
+          bold:True
+          text_color: "white"             
+
+      MDBoxLayout:
+        orientation: "vertical"
+        spacing:5        
+        Image:
+          source: 'images/hands_8.png'          
+          pos_hint: {"center_x": 0.5}   
+        MDLabel:      
+          text: "Friccionar os punhos com movimentos circulares"
+          halign: "center"
+          font_style: "Subtitle2"  
+          theme_text_color: "Custom"
+          bold:True
+          text_color: "white"             
+
+      MDBoxLayout:
+        orientation: "vertical"
+        spacing:5        
+        Image:
+          source: 'images/hands_9.png'          
+          pos_hint: {"center_x": 0.5}   
+        MDLabel:      
+          text: "Enxágue as mãos com água"
+          halign: "center"
+          font_style: "Subtitle2"  
+          theme_text_color: "Custom"
+          bold:True
+          text_color: "white"             
+
+      MDBoxLayout:
+        orientation: "vertical"
+        spacing:5        
+        Image:
+          source: 'images/hands_10.png'          
+          pos_hint: {"center_x": 0.5}   
+        MDLabel:      
+          text: "Seque completamente com uma toalha descartável"
+          halign: "center"
+          font_style: "Subtitle2"  
+          theme_text_color: "Custom"
+          bold:True
+          text_color: "white"                                                               

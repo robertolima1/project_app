@@ -27,19 +27,145 @@
     MDSeparator:
       color: "#004040"
       size_hint_y: None
-      height: dp(2) 
+      height: dp(2)
+       
+    MDCarousel:
+      MDBoxLayout:
+        orientation: "vertical"
+                
+        MDLabel:      
+          # id: legislacao_describe
+          text: "Você sabe quais as principais dificuldades apontadas por mulheres com bexiga neurogênica em relação a realização do autocateterismo vesical na técnica limpa?"
+          halign: "center"
+          font_style: "H6"  
+          theme_text_color: "Custom"
+          bold:True
+          text_color: "white"     
 
-    MDLabel:
-      id: informativo_title      
-      halign: "center"
-      font_style: "H5"  
-      theme_text_color: "Custom"
-      bold:True
-      text_color: "#004040"
-    MDLabel:      
-      id: informativo_describe
-      halign: "center"
-      font_style: "Body2"  
-      theme_text_color: "Custom"
-      bold:True
-      text_color: "#004040"
+          padding_x:10
+
+        MDLabel:      
+          # id: legislacao_describe
+          text: "De acordo com estudos do últimos 5 anos, mulheres relataram, principalmente:"
+          halign: "center"
+          font_style: "Subtitle1"  
+          theme_text_color: "Custom"
+          bold:True
+          text_color: "white"     
+
+          padding_x:10
+
+        
+        MDIconButton:
+          icon: "images/arrow-right.png"          
+          pos_hint: {"center_x": 0.5}
+        
+
+      MDBoxLayout:
+        orientation: "vertical"
+
+        MDLabel:      
+          # id: legislacao_describe
+          text: "Dificuldades de identificação e visualização do meato uretral, além de dor e sangramento ao realizar o autocateterismo"
+          halign: "center"
+          font_style: "H6"  
+          theme_text_color: "Custom"
+          bold:True
+          italic:True
+          text_color: "white"     
+
+          padding_x:10
+
+        MDLabel:      
+          # id: legislacao_describe
+          text: "A uretra, conforme ilustrado na tela seguinte, está entre o clitóris e a abertura da vagina. Para realizar o cateterismo vesical, deve-se introduzir a sonda na uretra, assim possibilitando o esvaziamento completo da bexiga. Para facilitar a identificação e visualização do meato uretral, é recomendável que se utilize um espelho."
+          halign: "justify"
+          font_style: "Subtitle1"  
+          theme_text_color: "Custom"          
+          text_color: "white"     
+          padding_x:10
+
+      
+      MDBoxLayout:
+        orientation: "vertical"
+
+        Image:
+          source: 'images/mulher.png'          
+          pos_hint: {"center_x": 0.5}            
+      
+        MDIconButton:
+          icon: "images/arrow-right.png"          
+          pos_hint: {"center_x": 0.5}        
+
+
+      MDBoxLayout:
+        orientation: "vertical"
+        spacing:5
+
+        MDLabel:      
+          # id: legislacao_describe
+          text: "O cateterismo vesical, conforme ilustrado na aba “Técnica” do aplicativo, menciona na sétima etapa o processo de lubrificação do cateter antes da sua introdução. Essa etapa é importante pois ajuda a evitar o  trauma uretral. Isso porque, o mau uso do lubrificante, cursa em resistência na introdução do cateter, dor e até mesmo sangramento."
+          halign: "justify"
+          font_style: "Body2"   
+          theme_text_color: "Custom"          
+          text_color: "white"     
+          padding_x:10
+
+        MDLabel:      
+          # id: legislacao_describe
+          text: "No entanto, tais problemas podem ser evitados pelo uso do lubrificante em quantidades adequadas, pois ele facilita o deslizamento da sonda."
+          halign: "justify"
+          font_style: "Body2"  
+          theme_text_color: "Custom"          
+          text_color: "white"     
+          padding_x:10
+        
+        MDIconButton:
+          icon: "images/arrow-right.png"          
+          pos_hint: {"center_x": 0.5}        
+
+      MDBoxLayout:
+        orientation: "vertical"
+        spacing:5
+        MDLabel:      
+          # id: legislacao_describe
+          text: "Constrangimento por falta de estrutura adequada para a execução do procedimento"
+          font_style: "H6"           
+          theme_text_color: "Custom"          
+          text_color: "white"     
+          padding_x:10
+          bold:True
+          italic:True
+
+        MDLabel:      
+          # id: legislacao_describe
+          text: "A dependência por terceiros gerada pela falta de estrutura adequada em espaços públicos e privados, acarreta em constrangimento na realização do cateterismo, conforme apontam estudos. \n Tal problema não deveria ocorrer, pois o dispositivo legal que rege os direitos da pessoa com deficiência, prevê o direito de acesso a todos os espaços públicos, incluindo banheiros. Isso é garantido pela Convenção Internacional sobre os Direitos das Pessoas com Deficiência. "
+          halign: "justify"
+          font_style: "Body2"  
+          theme_text_color: "Custom"          
+          text_color: "white"     
+          padding_x:10
+        
+        MDLabel:      
+          # id: legislacao_describe
+          text: "A dependência por terceiros gerada pela falta de estrutura adequada em espaços públicos e privados, acarreta em constrangimento na realização do cateterismo, conforme apontam estudos. \n Tal problema não deveria ocorrer, pois o dispositivo legal que rege os direitos da pessoa com deficiência, prevê o direito de acesso a todos os espaços públicos, incluindo banheiros. Isso é garantido pela Convenção Internacional sobre os Direitos das Pessoas com Deficiência. "
+          halign: "justify"
+          font_style: "Body2"  
+          theme_text_color: "Custom"          
+          text_color: "white"     
+          padding_x:10
+        
+        MDLabel:      
+          # id: legislacao_describe
+          text: "E para mais informações acerca dos seus direitos, clique na aba “Legislação”"
+          halign: "center"
+          font_style: "Subtitle2"  
+          theme_text_color: "Custom"          
+          text_color: "white"     
+          padding_x:10
+        
+        MDIconButton:
+          icon: "images/arrow-left.png"          
+          pos_hint: {"center_x": 0.5}        
+
+    
