@@ -36,37 +36,41 @@
       spacing:0.5
       MDLabel:
         id: legislacao_title  
-        text:"Direitos para pessoas com deficiência"    
+        text:"DIREITOS PARA PESSOAS \n COM DEFICIÊNCIA"    
         halign: "center"
         font_style: "H6"  
 
         theme_text_color: "Custom"
         bold:True
-        text_color: "white"
+        text_color: "#004040"
         size_hint_y: 0.25        
       MDLabel:      
         # id: legislacao_describe
-        text: "De acordo com o artigo 196 da Constituição Federal de 1988:"
+        text: "De acordo com o artigo 196 da Constituição \n Federal de 1988:"
         halign: "center"
         font_style: "Subtitle1"  
         theme_text_color: "Custom"
         bold:True
-        text_color: "white"
-        size_hint_y: 0.25
+        text_color: "#004040"        
         
 
       MDLabel:      
         # id: legislacao_describe
-        text: "A saúde é direito de todos e dever do Estado, garantido mediante políticas sociais e econômicas que visem à redução do risco de doença e de outros agravos e ao acesso universal e igualitário às ações e serviços para sua promoção, proteção e recuperação."
+        text: "“A saúde é direito de todos e dever do Estado, garantido mediante políticas sociais e econômicas que visem à redução do risco de doença e de outros agravos e ao acesso universal e igualitário às ações e serviços para sua promoção, proteção e recuperação.”"
         halign: "justify"
         font_style: "Caption"  
         theme_text_color: "Custom"
         bold:True
-        text_color: "white"
+        text_color: "#004040"
         padding_x:10      
-        size_hint_y: 0.25
+        size_hint_y: 0.1
+        
 
-
+      MDSeparator:
+        color: "#004040"
+        size_hint_y: None
+        height: dp(2) 
+        
       MDCarousel:
   
         MDBoxLayout:
@@ -74,15 +78,14 @@
           
           MDLabel:      
             # id: legislacao_describe
-            text: "Acesso a espaços públicos e privados"
-            halign: "left"
+            text: "► Acesso a espaços públicos \n e privados"
+            halign: "center"
             font_style: "H6"  
             theme_text_color: "Custom"
             bold:True
             text_color: "white"     
- 
+            size_hint_y: 0.1
             padding_x:10
-
             
 
           MDLabel:      
@@ -93,9 +96,8 @@
             theme_text_color: "Custom"      
             text_color: "white"      
             padding_x:10
+            size_hint_y: 0.25
  
-
-
           MDLabel:      
             # id: legislacao_describe
             text: "A Lei de Acessibilidade (nº 13.825) tornou obrigatória a implementação de banheiros públicos acessíveis para defientes em todo território nacional. Essa adaptação dos sanitários possibilita maior acesso a locais de uso comum, reduzindo as barreiras de inclusão social."
@@ -116,8 +118,8 @@
 
           MDLabel:      
             # id: legislacao_describe
-            text: "Acesso a insumos para a realização do cateterismo vesical"
-            halign: "left"
+            text: "► Acesso a insumos para a realização do cateterismo vesical"
+            halign: "center"
             font_style: "H6"  
             theme_text_color: "Custom"
             bold:True
@@ -127,12 +129,13 @@
           
           MDLabel:      
             # id: legislacao_describe
-            text: "Por deci são do Supremo Tribunal Federal (STF), no ano de 2022,  tornou-se obrigatório o fornecimento contínuo e gratuito, pelo SUS, de insumos necessários à realização do procedimento que permite o esvaziamento da bexiga."
+            text: "Por decisão do Supremo Tribunal Federal (STF), no ano de 2022,  tornou-se obrigatório o fornecimento contínuo e gratuito, pelo SUS, de insumos necessários à realização do procedimento que permite o esvaziamento da bexiga."
             halign: "justify"
             font_style: "Body2"  
             theme_text_color: "Custom"      
             text_color: "white"      
             padding_x:10
+            size_hint_y: 0.25
 
 
           MDLabel:      
@@ -143,6 +146,7 @@
             theme_text_color: "Custom"      
             text_color: "white"      
             padding_x:10
+            
 
 
           MDIconButton:

@@ -21,7 +21,7 @@
           id: title
           text:"Home"
           halign: "center"        
-          font_style: "H6"
+          font_style: "Body2"
           pos_hint: {"center_x": 0.5, "center_y": 0.5}
           theme_text_color: "Custom"
           bold:True
@@ -80,7 +80,7 @@
         icon: "images/diario.png"
         text: "Anotações"        
         on_tab_press:
-          root.ids.title.text = "Anotações"          
+          root.ids.title.text = "Diário Miccional"          
           app.populate_screen(self,"anotacao")
         ScreenAnotacaoView:          
         MDSeparator:
@@ -89,14 +89,13 @@
           height: dp(2)    
 
       MDBottomNavigationItem:
-        name: "Screen 2"        
-        icon: "images/alert.png"  
-        text: "Alertas"       
+        name: "Screen 3"        
+        icon: "images/book.png"
+        text: "Técnica"
         on_tab_press:
-          root.ids.title.text = "Alertas"
-          app.populate_screen(self,"alerta")
-
-        ScreenAlertaView:
+          root.ids.title.text = "Técnica Limpa do Autocateterismo Vesical"
+          app.populate_screen(self,"tecnica")
+        ScreenTecnicaView:
         MDSeparator:
           color: "#004040"
           size_hint_y: None
@@ -115,25 +114,25 @@
           height: dp(2)          
 
       MDBottomNavigationItem:
-        name: "Screen 3"        
-        icon: "images/book.png"
-        text: "Técnicas"
+        name: "Screen 2"        
+        icon: "images/alert.png"  
+        text: "Alertas"       
         on_tab_press:
-          root.ids.title.text = "Técnicas"
-          app.populate_screen(self,"tecnica")
-        ScreenTecnicaView:
+          root.ids.title.text = "Fique Atenta!"
+          app.populate_screen(self,"alerta")
+
+        ScreenAlertaView:
         MDSeparator:
           color: "#004040"
           size_hint_y: None
           height: dp(2)    
-
 
       MDBottomNavigationItem:
         name: "Screen 4"
         icon: "images/bell.png"
         text: "Lembretes"
         on_tab_press:
-          root.ids.title.text = "Lembretes"
+          root.ids.title.text = "Lembretes de Cateterização Vesical"
           app.populate_screen(self,"lembrete")
         ScreenLembreteView:
         MDSeparator:
