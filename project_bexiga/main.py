@@ -99,7 +99,7 @@ class MainApp(MDApp):
       
       for anotacao in anotacoes:
         icon_delete =IconRightWidget(icon = "trash-can-outline", on_release = self.delete_anotacao, id = anotacao.anotacao_id)      
-        element = TwoLineAvatarIconListItem(id= anotacao.anotacao_id, text=anotacao.anotacao_title, text_color = "white", font_style = "H6", theme_text_color= "Custom", secondary_text_color = "white", secondary_font_style = "Body2", secondary_theme_text_color= "Custom", secondary_text = f"{datetime.datetime.strptime(anotacao.insertion_date, '%Y-%m-%d %H:%M:%S').strftime('%d/%m/%Y')}", on_release = self.setAnotacaoDescribeListItem)       
+        element = TwoLineAvatarIconListItem(id= anotacao.anotacao_id, text=anotacao.anotacao_title, text_color = "white", font_style = "Body2", theme_text_color= "Custom", secondary_text_color = "white", secondary_font_style = "Subtitle2", secondary_theme_text_color= "Custom", secondary_text = f"{datetime.datetime.strptime(anotacao.insertion_date, '%Y-%m-%d %H:%M:%S').strftime('%d/%m/%Y')}", on_release = self.setAnotacaoDescribeListItem)       
         element.add_widget(icon_delete)
         parent.children[1].ids.list_anotacao.add_widget(element)
     elif(screen_name == 'tecnica'):          
@@ -107,7 +107,7 @@ class MainApp(MDApp):
       parent.children[1].ids.list_tecnica.clear_widgets()
       
       for tecnica in tecnicas:      
-        parent.children[1].ids.list_tecnica.add_widget(OneLineListItem(id= tecnica.tecnica_id, text=tecnica.tecnica_title,  text_color = "white", font_style = "H6", theme_text_color= "Custom",on_release = self.setTecnicaDescribeListItem))       
+        parent.children[1].ids.list_tecnica.add_widget(OneLineListItem(id= tecnica.tecnica_id, text=tecnica.tecnica_title,  text_color = "white", font_style = "Body2", theme_text_color= "Custom",on_release = self.setTecnicaDescribeListItem))       
         
     elif(screen_name == 'lembrete'):    
       self.populate_lembrete(parent)    
@@ -126,7 +126,7 @@ class MainApp(MDApp):
         icon_play =IconLeftWidget(icon = "play", on_release = self.start_lembrete, id = lembrete.lembrete_id)
         icon_stop =IconLeftWidget(icon = "stop", on_release = self.start_lembrete, id = lembrete.lembrete_id)
         icon_delete =IconRightWidget(icon = "trash-can-outline", on_release = self.delete_lembrete, id = lembrete.lembrete_id)
-        element = ThreeLineAvatarIconListItem(id = lembrete.lembrete_id, text=lembrete.lembrete_title, secondary_text = f"Repetições: {lembrete.lembrete_count_repeat}",tertiary_text = f"Tempo: {datetime.datetime.strptime(lembrete.lembrete_timestamp, '%Y-%m-%d %H:%M:%S').strftime('%H:%M:%S')}" ,  text_color = "white", font_style = "H6", theme_text_color= "Custom", secondary_text_color = "white", secondary_font_style = "Body2", secondary_theme_text_color= "Custom", tertiary_theme_text_color= "Custom", tertiary_text_color = "white", tertiary_font_style = "Subtitle2", on_release= self.setLembreteDescribeListItem)
+        element = ThreeLineAvatarIconListItem(id = lembrete.lembrete_id, text=lembrete.lembrete_title, secondary_text = f"Repetições: {lembrete.lembrete_count_repeat}",tertiary_text = f"Tempo: {datetime.datetime.strptime(lembrete.lembrete_timestamp, '%Y-%m-%d %H:%M:%S').strftime('%H:%M:%S')}" ,  text_color = "white", font_style = "Body2", theme_text_color= "Custom", secondary_text_color = "white", secondary_font_style = "Subtitle1", secondary_theme_text_color= "Custom", tertiary_theme_text_color= "Custom", tertiary_text_color = "white", tertiary_font_style = "Subtitle2", on_release= self.setLembreteDescribeListItem)
         if(lembrete.on_start):
           element.add_widget(icon_stop)
         else:

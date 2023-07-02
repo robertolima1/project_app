@@ -3,10 +3,27 @@
   md_bg_color: "#67AB9F"
   FloatLayout:    
     Image:
-      source: 'images/background.png'
+      source: 'images/background_0-0.png'
       size_hint: (1, 1)
-      pos_hint: {"center_x": 0.5, "center_y": 0.5}
+      # size: "200dp", "200dp"
+      pos_hint: {"center_x": 0.03, "center_y": 0.03}    
 
+    Image:
+      source: 'images/background_1-0.png'
+      size_hint: (1, 1)
+      # size: "200dp", "200dp"
+      pos_hint: {"center_x": 0.97, "center_y": 0.03}    
+    Image:
+      source: 'images/background_0-1.png'
+      size_hint: (1, 1)
+      # size: "200dp", "200dp"
+      pos_hint: {"center_x": 0.03, "center_y": 0.97}                
+    Image:
+      source: 'images/background_1-1.png'
+      size_hint: (1, 1)
+      # size: "200dp", "200dp"
+      pos_hint: {"center_x": 0.97, "center_y": 0.97}          
+      
     ScrollView:
       pos_hint: {"center_x": 0.5, "center_y": 0.5}
       MDList:
