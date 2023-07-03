@@ -1,13 +1,13 @@
 [app]
 
 # (str) Title of your application
-title = Projeto Bexiga
+title = Cateterizando
 
 # (str) Package name
-package.name = project.bexiga
+package.name = project.cateterizando
 
 # (str) Package domain (needed for android/ios packaging)
-package.domain = org.test
+package.domain = roberto.app
 
 # (str) Source code where the main.py live
 source.dir = .
