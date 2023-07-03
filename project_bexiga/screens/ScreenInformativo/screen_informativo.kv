@@ -35,14 +35,14 @@
                 
         MDLabel:      
           # id: legislacao_describe
-          text: "Você sabe quais as principais dificuldades apontadas por mulheres com bexiga neurogênica em relação a realização do autocateterismo vesical na técnica limpa?"
+          text: "VOCÊ SABE QUAIS AS PRINCIPAIS DIFICULDADES APONTADAS POR MULHERES COM BEXIGA NEUROGÊNICA EM RELAÇÃO A REALIZAÇÃO DO AUTOCATETERISMO VESICAL NA TÉCNICA LIMPA?"
           halign: "center"
           font_style: "H6"  
           theme_text_color: "Custom"
           bold:True
-          text_color: "white"     
-
+          text_color: "#004040"     
           padding_x:10
+          size_hint_y: 0.25
 
         MDLabel:      
           # id: legislacao_describe
@@ -52,8 +52,8 @@
           theme_text_color: "Custom"
           bold:True
           text_color: "white"     
-
           padding_x:10
+          size_hint_y: 0.1
 
         
         MDIconButton:
@@ -66,14 +66,14 @@
 
         MDLabel:      
           # id: legislacao_describe
-          text: "Dificuldades de identificação e visualização do meato uretral, além de dor e sangramento ao realizar o autocateterismo"
+          text: "Dificuldades de identificação e visualização do meato uretral"
           halign: "center"
           font_style: "H6"  
           theme_text_color: "Custom"
           bold:True
           italic:True
           text_color: "white"     
-
+          size_hint_y: 0.25
           padding_x:10
 
         MDLabel:      
@@ -83,16 +83,39 @@
           font_style: "Subtitle1"  
           theme_text_color: "Custom"          
           text_color: "white"     
+          size_hint_y: 0.25
           padding_x:10
+
+        MDIconButton:
+          icon: "images/arrow-right.png"          
+          pos_hint: {"center_x": 0.5}        
 
       
       MDBoxLayout:
         orientation: "vertical"
 
+
+        MDLabel:      
+          # id: legislacao_describe
+          text: "A vulva (parte externa do aparelho genital feminino)"
+          halign: "center"
+          font_style: "H6"   
+          theme_text_color: "Custom"          
+          text_color: "white"     
+          padding_x:10
+          size_hint_y: 0.1
         Image:
           source: 'images/mulher.png'          
           pos_hint: {"center_x": 0.5}            
-      
+        MDLabel:      
+          # id: legislacao_describe
+          text: "Arte g1"
+          halign: "center"
+          font_style: "Caption"   
+          theme_text_color: "Custom"          
+          text_color: "white"     
+          padding_x:10
+          size_hint_y: 0.1
         MDIconButton:
           icon: "images/arrow-right.png"          
           pos_hint: {"center_x": 0.5}        
@@ -104,12 +127,23 @@
 
         MDLabel:      
           # id: legislacao_describe
-          text: "O cateterismo vesical, conforme ilustrado na aba “Técnica” do aplicativo, menciona na sétima etapa o processo de lubrificação do cateter antes da sua introdução. Essa etapa é importante pois ajuda a evitar o  trauma uretral. Isso porque, o mau uso do lubrificante, cursa em resistência na introdução do cateter, dor e até mesmo sangramento."
+          text: "Dor e sangramento ao realizar o autocateterismo."
+          font_style: "H6"           
+          theme_text_color: "Custom"          
+          text_color: "white"     
+          padding_x:10
+          bold:True
+          
+
+        MDLabel:      
+          # id: legislacao_describe
+          text: "O cateterismo vesical, conforme ilustrado na aba “Técnica” do aplicativo, menciona na sétima etapa, o processo de lubrificação do cateter antes da sua introdução. Essa etapa é importante pois ajuda a evitar o  trauma uretral. Isso porque, o mau uso do lubrificante, cursa em resistência na introdução do cateter, dor e até mesmo sangramento."
           halign: "justify"
           font_style: "Body2"   
           theme_text_color: "Custom"          
           text_color: "white"     
           padding_x:10
+          size_hint_y: 0.2
 
         MDLabel:      
           # id: legislacao_describe
@@ -119,6 +153,12 @@
           theme_text_color: "Custom"          
           text_color: "white"     
           padding_x:10
+          # size_hint_y: 0.25
+
+
+        Image:
+          source: 'images/figura-container-7.png'          
+          pos_hint: {"center_x": 0.5}            
         
         MDIconButton:
           icon: "images/arrow-right.png"          
@@ -130,6 +170,7 @@
         MDLabel:      
           # id: legislacao_describe
           text: "Constrangimento por falta de estrutura adequada para a execução do procedimento"
+          halign: "center"
           font_style: "H6"           
           theme_text_color: "Custom"          
           text_color: "white"     
@@ -161,7 +202,7 @@
           halign: "center"
           font_style: "Subtitle2"  
           theme_text_color: "Custom"          
-          text_color: "white"     
+          text_color: "#004040"   
           padding_x:10
         
         MDIconButton:

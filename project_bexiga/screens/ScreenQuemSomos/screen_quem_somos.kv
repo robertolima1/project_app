@@ -1,0 +1,71 @@
+<ScreenQuemSomos>:
+  name: "quem_somos"
+  md_bg_color: "#67AB9F"
+  MDBoxLayout:
+    orientation: "vertical"
+    MDCard:      
+      md_bg_color:"#67AB9F"    
+      size_hint: 1, None
+      size: "50dp", "50dp"     
+      radius: 0,0,0,0       
+      MDFloatLayout:        
+        MDLabel:
+          id: title
+          text:"Quem Somos?"
+          halign: "center"
+          font_style: "H6"
+          pos_hint: {"center_x": 0.5, "center_y": 0.5}
+          theme_text_color: "Custom"
+          bold:True
+          text_color: "#004040"
+        MDIconButton:
+          icon: "images/arrow.png"          
+          pos_hint: {"center_x": 0.06, "center_y": .5}
+          on_release: 
+            root.manager.transition.direction = "right"
+            root.manager.current = "main"
+    MDSeparator:
+      color: "#004040"
+      size_hint_y: None
+      height: dp(2) 
+
+    MDLabel:      
+        # id: legislacao_describe
+      text: "Sobre o aplicativo:"
+      halign: "left"
+      font_style: "H6"  
+      theme_text_color: "Custom"          
+      text_color: "white"     
+      padding_x:10
+      size_hint_y: 0.1
+
+    MDLabel:      
+        # id: legislacao_describe
+      text: "Este aplicativo foi desenvolvido a partir dos resultado de um Trabalho de Conclusão de Curso de graduação em Enfermagem, pela Universidade Federal do Rio de Janeiro - Escola de Enfermagem Anna Nery. \n Toda a teoria dos textos presentes no aplicativo, teve por base pesquisas científicas."
+      halign: "justify"
+      font_style: "Body2"  
+      theme_text_color: "Custom"          
+      text_color: "white"
+      bold:True     
+      padding_x:10
+
+    
+    MDLabel:      
+        # id: legislacao_describe
+      text: "Créditos"
+      halign: "left"
+      font_style: "H6"  
+      theme_text_color: "Custom"          
+      text_color: "white"     
+      padding_x:10
+      size_hint_y: 0.1
+
+    MDLabel:      
+        # id: legislacao_describe
+      text: "Professora Orientadora: Profa. Drª Rachel Ferreira Savary Figueiró \n\nDiscente: Larissa de Souza Quintino Lima \n\nCientista da Computação: Roberto Gomes de Lima"
+      halign: "left"
+      font_style: "Body2"  
+      theme_text_color: "Custom"          
+      text_color: "white"     
+      padding_x:10
+      bold:True

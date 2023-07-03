@@ -24,12 +24,20 @@
       size_hint: (1, 1)
       # size: "200dp", "200dp"
       pos_hint: {"center_x": 0.92, "center_y": 0.92}          
-      
+
+    MDLabel:
+      text: "Você sabe o que é uma Bexiga Neurogênica?"
+      halign: "center"
+      font_style: "H6"
+      pos_hint: {"center_x": 0.5, "center_y": 0.85}
+      theme_text_color: "Custom"
+      bold:True
+      text_color: "white"
     MDLabel:
       text: "A Bexiga Neurogênica é uma condição na qual a habilidade de eliminação vesical se encontra comprometida, isso por efeito da interrupção da comunicação entre partes do corpo, devido a uma lesão medular. \n \n Segundo Lianza (2007), a micção é um processo ativo, o qual necessita de uma sincronia entre o trato corticoespinhal e o sistema autonômico para gerar a eliminação plena do conteúdo estocado na bexiga. \n \n A interferência desse mecanismo causa uma disfunção vesical de origem neurológica, podendo ser do tipo espástica ou flácida. A abordagem terapêutica sugerida é o cateterismo vesical intermitente, tendo frequência definida a partir do balanço hídrico."
       halign: "center"
       font_style: "Body2"
-      pos_hint: {"center_x": 0.5, "center_y": 0.5}
+      pos_hint: {"center_x": 0.5, "center_y": 0.4}
       theme_text_color: "Custom"
       bold:True
       text_color: "white"
@@ -51,5 +59,25 @@
         # root.manager.transition.direction = "right"
         # root.manager.current = "legislacao"
       pos_hint: {"center_x": 0.9, "center_y": 0.1}            
+
+    MDIconButton:
+      icon: "images/informacoes.png" 
+      id:quem_somos_icon          
+      md_bg_color:"#FF7AA8"
+      icon_size: "15sp"
+      size_hint: None, None
+      size:"50dp","50dp"
+      halign:"left"
+      theme_icon_color: "Custom"
+      line_width: 1
+      type:"large"    
+      line_color: "#004040"
+      on_release: 
+        app.switch_quem_somos()
+        # root.manager.transition.direction = "right"
+        # root.manager.current = "legislacao"
+      pos_hint: {"center_x": 0.1, "center_y": 0.1}            
+
+
 
     

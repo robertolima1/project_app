@@ -7,6 +7,7 @@ from dialog_content.instant_content.instant_content import InstantContent
 from dialog_content.instant_content.loading_content import LoadingContent
 from screens.ScreenLegislacao.screen_legislacao import ScreenLegislacao
 from screens.ScreenMain.screen_main import ScreenMainView
+from screens.ScreenQuemSomos.screen_quem_somos import ScreenQuemSomos
 from screens.ScreenWelcome.screen_welcome import ScreenWelcomeView
 from screens.ScreenAlerta.screen_alerta import ScreenAlertaView
 from screens.ScreenAlertaDescricao.screen_alerta_descricao import ScreenAlertaDescricao
@@ -48,6 +49,7 @@ class MainApp(MDApp):
     self.sm.add_widget(ScreenAnotacaoDescricao()) 
     self.sm.add_widget(ScreenLegislacao())   
     self.sm.add_widget(ScreenInformativo())
+    self.sm.add_widget(ScreenQuemSomos())
     
     return self.sm
   
@@ -320,5 +322,11 @@ class MainApp(MDApp):
   def switch_legislacao(self):
     self.sm.transition.direction = "left"
     self.sm.current = "legislacao"
+
+  def switch_quem_somos(self):
+      self.sm.transition.direction = "left"
+      self.sm.current = "quem_somos"
+
+
 
 MainApp().run()
