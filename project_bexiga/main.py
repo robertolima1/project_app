@@ -190,6 +190,11 @@ class MainApp(MDApp):
     title = self.sm.get_screen("anotacao-descricao").ids.input_title.text
     describe = self.sm.get_screen("anotacao-descricao").ids.input_describe.text
     date = self.sm.get_screen("anotacao-descricao").ids.input_data.text
+    try:
+      instante_dt = datetime.strptime(date, '%d/%m/%Y')
+    except:
+      self.validateDialog.show_validate_dialog("Data preenchida incorretamente")      
+      return
     if(not (title and describe and date)):
       self.validateDialog.show_validate_dialog("Necessário preencher todos os campos corretamente!")      
       return

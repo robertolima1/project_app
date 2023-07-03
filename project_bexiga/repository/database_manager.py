@@ -85,7 +85,7 @@ class DatabaseManager:
       
   def save_anotacao(self, date, describe, title):
     c = self.connection.cursor()
-    instante_dt = datetime.strptime(date, '%Y-%m-%d')
+    instante_dt = datetime.strptime(date, '%d/%m/%Y')
     
     c.execute(f"INSERT INTO ANOTACAO (anotacao_id, anotacao_title, anotacao_describe, insertion_date) \
                VALUES ('{uuid.uuid4()}', '{title}', '{describe}', '{str(instante_dt)}')")
@@ -93,7 +93,7 @@ class DatabaseManager:
     
   def update_anotacao(self,anotacao_id, describe, title, date):
     c = self.connection.cursor()
-    instante_dt = datetime.strptime(date, '%Y-%m-%d')    
+    instante_dt = datetime.strptime(date, '%d/%m/%Y')    
     c.execute(f"UPDATE ANOTACAO set anotacao_title = '{title}', anotacao_describe = '{describe}', insertion_date = '{instante_dt}'  WHERE anotacao_id = '{anotacao_id}'")
     self.connection.commit()
         
