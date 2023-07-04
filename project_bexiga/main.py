@@ -193,7 +193,7 @@ class MainApp(MDApp):
     describe = self.sm.get_screen("anotacao-descricao").ids.input_describe.text
     date = self.sm.get_screen("anotacao-descricao").ids.input_data.text
     try:
-      instante_dt = datetime.strptime(date, '%d/%m/%Y')
+      instante_dt = datetime.datetime.strptime(date, '%d/%m/%Y')
     except:
       self.validateDialog.show_validate_dialog("Data preenchida incorretamente")      
       return
