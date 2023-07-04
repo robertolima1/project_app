@@ -11,7 +11,7 @@
       MDFloatLayout:        
         MDLabel:
           id: title
-          text:"Quem Somos?"
+          text:"Informe"
           halign: "center"
           font_style: "H6"
           pos_hint: {"center_x": 0.5, "center_y": 0.5}
@@ -29,43 +29,131 @@
       size_hint_y: None
       height: dp(2) 
 
-    MDLabel:      
-        # id: legislacao_describe
-      text: "Sobre o aplicativo:"
-      halign: "left"
-      font_style: "H6"  
-      theme_text_color: "Custom"          
-      text_color: "white"     
-      padding_x:10
-      size_hint_y: 0.1
+    MDCarousel:
+      MDBoxLayout:
+        orientation: "vertical"
+                
+        MDLabel:      
+            # id: legislacao_describe
+          text: "Quem Somos?"
+          halign: "left"
+          font_style: "H6"  
+          theme_text_color: "Custom"          
+          text_color: "white"     
+          padding_x:10
+          size_hint_y: 0.1
 
-    MDLabel:      
-        # id: legislacao_describe
-      text: "Este aplicativo foi desenvolvido a partir dos resultado de um Trabalho de Conclusão de Curso de graduação em Enfermagem, pela Universidade Federal do Rio de Janeiro - Escola de Enfermagem Anna Nery. \n Toda a teoria dos textos presentes no aplicativo, teve por base pesquisas científicas."
-      halign: "justify"
-      font_style: "Body2"  
-      theme_text_color: "Custom"          
-      text_color: "white"
-      bold:True     
-      padding_x:10
+        MDLabel:      
+            # id: legislacao_describe
+          text: "Sobre o aplicativo:\n\nEste aplicativo foi desenvolvido a partir dos resultado de um Trabalho de Conclusão de Curso de graduação em Enfermagem, pela Universidade Federal do Rio de Janeiro - Escola de Enfermagem Anna Nery. \n Toda a teoria dos textos presentes no aplicativo, teve por base pesquisas científicas.LIANZA, Sergio. Medicina de Reabilitação. 4ª edição. Cidade: Rio de Janeiro, Guanabara Koogan, 2007.\n\nFaro ACM. O ensino de reabilitação: expectativas de estudantes de enfermagem. Rev Esc Enferm USP 1996; 30 (2): 332-9. Disponível em:https://www.scielo.br/j/reeusp/a/kmkWjZ3Hkd8R9SsKJ68f9mH/?lang=pt#. Acesso em: 08 jun. 2023."
+          halign: "justify"
+          font_style: "Body2"  
+          theme_text_color: "Custom"          
+          text_color: "white"
+          bold:True     
+          padding_x:10
+          size_hint_y: 0.25
+              
+        MDLabel:      
+            # id: legislacao_describe
+          text: "Créditos:\n\nProfessora Orientadora: Profa. Drª Rachel Ferreira Savary Figueiró \n\nDiscente: Larissa de Souza Quintino Lima \n\nCientista da Computação: Roberto Gomes de Lima"
+          halign: "left"
+          font_style: "Body2"  
+          theme_text_color: "Custom"          
+          text_color: "white"     
+          padding_x:10
+          bold:True
+          size_hint_y: 0.2
 
+
+        MDIconButton:
+          icon: "images/arrow-right.png"          
+          pos_hint: {"center_x": 0.5, "center_y": .5}
+          
+      MDBoxLayout:
+        orientation: "vertical"
+
+        MDLabel:      
+            # id: legislacao_describe
+          text: "Referência:"
+          halign: "left"
+          font_style: "H6"  
+          theme_text_color: "Custom"          
+          text_color: "white"     
+          padding_x:10
+          size_hint_y: 0.05
+
+
+        MDLabel:      
+            # id: legislacao_describe
+          text: "BRASIL; MINISTÉRIO DA SAÚDE. Diretrizes de Atenção à Pessoa com Lesão Medular. 2015. Disponível em: https://bvsms.saude.gov.br/bvs/publicacoes/diretrizes_atencao_pessoa_lesao_medular_2ed.pdf.  Acesso em: 26 jun. 2023.\n\nRORIZ-FILHO, J. S.; VILAR, F. C.; MOTA, L. M.; LEAL, C. L.; PISI, P. C. B. Infecção do trato urinário. Medicina (Ribeirão Preto), [S. l.], v. 43, n. 2, p. 118-125, 2010. DOI: 10.11606/issn.2176-7262.v43i2p118-125. Disponível em: https://www.revistas.usp.br/rmrp/article/view/166.  Acesso em: 20 jun. 2023.\n\nBRASIL. Agência Nacional de Vigilância Sanitária. Segurança do Paciente em Serviços de Saúde: Higienização das Mãos / Agência Nacional de Vigilância Sanitária. Brasília: Anvisa, 2009. Disponível em: https://bvsms.saude.gov.br/bvs/publicacoes/seguranca_paciente_servicos_saude_higienizacao_maos.pdf. Acesso em: 15 jun. 2023.\n\nGuttmann, Ludwig. Spinal cord injuries: comprehensive management and research. Oxford: Blackwell Scientific Publications; 1973.\n\nLapides J, Diokno AC, Silber SJ, Lowe BS. Clean, intermittent selfcatheterization in the treatment of urinary tract disease. J Urol 1972;107:458- 61."
+          halign: "left"
+          font_style: "Caption"  
+          theme_text_color: "Custom"          
+          text_color: "white"     
+          padding_x:10
+          size_hint_y: 0.2
+
+
+        MDIconButton:
+          icon: "images/arrow-right.png"          
+          pos_hint: {"center_x": 0.5, "center_y": .5}
+          
+
+      MDBoxLayout:
+        orientation: "vertical"
+
+        MDLabel:      
+            # id: legislacao_describe
+          text: "Referência:"
+          halign: "left"
+          font_style: "H6"  
+          theme_text_color: "Custom"          
+          text_color: "white"     
+          padding_x:10
+          size_hint_y: 0.05
+
+
+        MDLabel:      
+            # id: legislacao_describe
+          text: "LIANZA, Sergio. Medicina de Reabilitação. 4ª edição. Cidade: Rio de Janeiro, Guanabara Koogan, 2007.\n\nFaro ACM. O ensino de reabilitação: expectativas de estudantes de enfermagem. Rev Esc Enferm USP 1996; 30 (2): 332-9. Disponível em:https://www.scielo.br/j/reeusp/a/kmkWjZ3Hkd8R9SsKJ68f9mH/?lang=pt#. Acesso em: 08 jun. 2023.\n\nBRASIL. Lei nº 13.825, de 13 de maio de 2019. Altera a Lei nº 10.098, de 19 de dezembro de 2000 (Lei de Acessibilidade), para estabelecer a obrigatoriedade de disponibilização, em eventos públicos e privados, de banheiros químicos acessíveis a pessoas com deficiência ou com mobilidade reduzida. Brasília, DF. Diário Oficial da União, 2019. Disponível em: https://www2.camara.leg.br/legin/fed/lei/2019/lei-13825-13-maio-2019-788096 publicacaooriginal157903-pl.html. Acesso em: 19 jun. 2023.\n\nCONITEC.Cateter hidrofílico para cateterismo vesical intermitente em indivíduos com lesão medular e bexiga neurogênica. Brasília – DF. Ministério da Saúde, 2019.Disponível em: http://antigo-conitec.saude.gov.br/images/Relatorios/2019/Relatorio_Cateter-hidrofilicoFINAL_459_2019.pdf. Acesso em: 02 jun. 2023.\n\nFALEIROS, F.; CUCICK, C. D.; SILVA NETO, E. T. da; RABEH, S. A. N.; FAVORETTO, N. B.; KÄPPLER, C. Desenvolvimento e validação de vídeo educativo para autocateterismo vesical intermitente limpo. Revista Eletrônica de Enfermagem, Goiânia, Goiás, Brasil, v. 21, p. 53973, 2019.Disponível em: https://revistas.ufg.br/fen/article/view/53973. Acesso em: 1 jun. 2023."
+          halign: "left"
+          font_style: "Caption"  
+          theme_text_color: "Custom"          
+          text_color: "white"     
+          padding_x:10
+          size_hint_y: 0.2
     
-    MDLabel:      
-        # id: legislacao_describe
-      text: "Créditos"
-      halign: "left"
-      font_style: "H6"  
-      theme_text_color: "Custom"          
-      text_color: "white"     
-      padding_x:10
-      size_hint_y: 0.1
+        MDIconButton:
+          icon: "images/arrow-right.png"          
+          pos_hint: {"center_x": 0.5, "center_y": .5}
 
-    MDLabel:      
-        # id: legislacao_describe
-      text: "Professora Orientadora: Profa. Drª Rachel Ferreira Savary Figueiró \n\nDiscente: Larissa de Souza Quintino Lima \n\nCientista da Computação: Roberto Gomes de Lima"
-      halign: "left"
-      font_style: "Body2"  
-      theme_text_color: "Custom"          
-      text_color: "white"     
-      padding_x:10
-      bold:True
+
+      MDBoxLayout:
+        orientation: "vertical"
+
+        MDLabel:      
+            # id: legislacao_describe
+          text: "Referência:"
+          halign: "left"
+          font_style: "H6"  
+          theme_text_color: "Custom"          
+          text_color: "white"     
+          padding_x:10
+          size_hint_y: 0.05
+
+
+        MDLabel:      
+            # id: legislacao_describe
+          text: "BENÍCIO, C. D. A. V. et al.. Fatores associados ao conhecimento de pacientes e cuidadores acerca do cateterismo vesical intermitente limpo: revisão integrativa. Revista da Escola de Enfermagem da USP, v. 52, p. e03362, 2018. Disponível em: https://doi.org/10.1590/S1980-220X2017033703362. Acesso em: 12 mai. 2023.\n\nOrlandin L; Mazzo A; Nardi A; Costa RRO. Dificuldades de pacientes e cuidadores na realização do cateterismo intermitente limpo: revisão de escopo. ESTIMA, Braz. J. Enterostomal Ther., 18: e1520. Disponível em: https://doi.org/10.30886/estima.v18.907_PT. Acesso em: 10 mai. 2023.\n\nRUIZ, Aline Gabriela Bega et al.. ATUAÇÃO DA REDE DE APOIO ÀS PESSOAS COM LESÃO MEDULAR. Reme : Rev. Min. Enferm., Belo Horizonte , v. 22, e-1116, 2018 . Disponível em http://www.revenf.bvs.br/scielo.php?script=sci_arttext&pid=S1415-27622018000100242&lng=pt&nrm=iso. Acesso em: 02 jun. 2023.\n\nMoretti FA, Oliveira VE de, Silva EMK da. Acesso a informações de saúde na internet: uma questão de saúde pública?. Rev Assoc Med Bras [Internet]. 2012Nov;58(6):650–8. Disponível em: https://doi.org/10.1590/S0104-42302012000600008. Acesso em 26 jun. 2023.\n\nBRASIL. [Constituição (1988)]. Constituição da República Federativa do Brasil de 1988. Brasília, DF: Presidente da República, [2016]. Disponível em: http://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm. Acesso em: 20 jun. 2023."
+          halign: "left"
+          font_style: "Caption"  
+          theme_text_color: "Custom"          
+          text_color: "white"     
+          padding_x:10
+          size_hint_y: 0.2
+
+
+        MDIconButton:
+          icon: "images/arrow-right.png"          
+          pos_hint: {"center_x": 0.5, "center_y": .5}
