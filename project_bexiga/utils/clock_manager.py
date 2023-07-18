@@ -42,7 +42,7 @@ class ClockManager:
       list_item = ThreeLineIconListItem(text=self.lembrete_title, secondary_text = f"{self.count}º Repetição", tertiary_text = datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S'))
       list_item.add_widget(icon_alert)
       self.notification_screen.ids.list_notificacao.add_widget(list_item)
-    self.element.ids.count.text = f'[{self.number_count}] {time.strftime("%X")}'
+    # self.element.ids.count.text = f'[{self.number_count}] {time.strftime("%X")}'
     if(self.number_count == 0):
       self.element_item.icon = 'play'
       self.stop()      
